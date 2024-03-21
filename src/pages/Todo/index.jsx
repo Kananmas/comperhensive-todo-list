@@ -4,7 +4,8 @@ import { Add } from "@mui/icons-material";
 import { FormGenerator } from "../../components/FormGenerator";
 import { useState } from "react";
 import { TodoTable } from "./components/TodoTable";
-import { todoForm } from "./utils/form.utils";
+import { todoForm } from "./components/FormDialog/utils/form.utils";
+import { FormDialog } from "./components/FormDialog";
 
 export const Todo = () => {
     const todos = useSelector((store) => store.todo.todos);
@@ -26,10 +27,6 @@ export const Todo = () => {
                 </Typography>
             </Box>
         }
-        <Dialog open={open}>
-            <DialogContent>
-                <FormGenerator fields={todoForm()}/>
-            </DialogContent>
-        </Dialog>
+        <FormDialog open={open} onClose={() => setOpen(false)} />
     </>
 }
