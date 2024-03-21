@@ -5,7 +5,6 @@ import { Select } from "./components/Select";
 export function Switcher(field) {
     const type = field.type;
     
-   debugger;
     switch(type) {
         case "select":
             return <Select {...field} />

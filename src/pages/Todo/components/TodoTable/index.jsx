@@ -1,12 +1,18 @@
 import { Button, Checkbox, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from "@mui/material";
 import { TodoItem } from "../../../../classes/todo-item.class";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { randomString } from "../../../../utils/random-string.utils";
+import { removeTodoAction } from "../../../../store/todo/todo.actions";
 
 export function TodoTable() {
+    const dispatch = useDispatch();
     const tableColumns = Object.keys(new TodoItem()).filter(item => item !== "userId");
     const todos = useSelector((store) => store.todo.todos);
     tableColumns.push("Actions");
+
+    const handleClickDelete = (todo) => {
+        dispatch(removeTodoAction(todo))
+    }
 
     return <TableContainer component={Paper}>
     <Table>
@@ -19,19 +25,26 @@ export function TodoTable() {
         </TableHead>
         <TableBody>
             {todos.map(((todo, index) => {
-                const { text, done , startDate , priority } = todo;
+                let { text, done , startDate , priority } = todo;
+                
+                if(startDate instanceof Date) {
+                    startDate = startDate.toDateString();
+                }
+
                 return <TableRow key={randomString()}>
-                    <TableCell>{index}</TableCell>
+                    <TableCell>{index + 1}</TableCell>
                     <TableCell>{text}</TableCell>
-                    <TableCell>{startDate.toDateString()}</TableCell>
                     <TableCell>{priority}</TableCell>
+                    <TableCell>{startDate}</TableCell>
                     <TableCell>
                         <Checkbox value={done} onChange={() => {
                             todo.done = !done
                         }} />
                     </TableCell>
                     <TableCell>
-                        <Button sx={{bgcolor:"red"}}>
+                        <Button onClick={() => handleClickDelete(todo)} sx={{bgcolor:"red" , color:"white" , "&:hover":{
+                            color:"blue"
+                        }}}>
                             <Typography variant="button">DELETE</Typography>
                         </Button>
                     </TableCell>

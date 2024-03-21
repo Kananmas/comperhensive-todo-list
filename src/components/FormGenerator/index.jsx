@@ -4,17 +4,18 @@ import { randomString } from "../../utils/random-string.utils";
 import { useEffect, useState } from "react";
 import { Upload } from "@mui/icons-material";
 
+
+
 export function FormGenerator({ fields = [], onSubmit }) {
-    const [formData, setFormData] = useState({});
-    let formDataCopy = { ...formData };
+    let formData = {};
+
 
     useEffect(() => {
         const defaultData = {};
         for (const field of fields) {
             defaultData[field.name] = field.defaultValue ?? "";
         }
-        setFormData(defaultData);
-        formDataCopy = defaultData;
+        formData = defaultData;
     }, [])
 
     const onChange = (e) => {
@@ -22,12 +23,11 @@ export function FormGenerator({ fields = [], onSubmit }) {
         const value = e.target.value
 
         const updatedData = { ...formData, [name]: value };
-        formDataCopy = updatedData;
+        formData = updatedData;
     }
 
     const handleOnSubmit = (e) => {
-        e.preventDefault();
-        onSubmit(formDataCopy);
+        onSubmit(formData);
     }
 
     return <Box>
