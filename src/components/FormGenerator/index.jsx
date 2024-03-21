@@ -25,21 +25,26 @@ export function FormGenerator({ fields = [], onSubmit }) {
         formDataCopy = updatedData;
     }
 
-    const handleOnSubmit = () => {
+    const handleOnSubmit = (e) => {
+        e.preventDefault();
         onSubmit(formDataCopy);
     }
 
-    return <FormGroup onSubmit={handleOnSubmit}>
+    return <Box>
         <Box>
             {
-                fields.map((item) => <Switcher key={randomString()} {...item} onChange={onChange} />)
+                fields.map((item) => 
+                <Switcher 
+                key={randomString()} 
+                {...item} 
+                onChange={onChange} />)
             }
         </Box>
         <Box sx={{marginTop:"12px" , textAlign:"center"}}>
-            <Button>
+            <Button type="submit" onClick={handleOnSubmit}>
                 <Upload />
             </Button>
         </Box>
 
-    </FormGroup>
+    </Box>
 }

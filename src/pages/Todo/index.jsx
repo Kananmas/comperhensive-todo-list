@@ -1,10 +1,8 @@
-import { Box, Button, Dialog, DialogContent, Typography } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import { useSelector } from "react-redux"
 import { Add } from "@mui/icons-material";
-import { FormGenerator } from "../../components/FormGenerator";
 import { useState } from "react";
 import { TodoTable } from "./components/TodoTable";
-import { todoForm } from "./components/FormDialog/utils/form.utils";
 import { FormDialog } from "./components/FormDialog";
 
 export const Todo = () => {
