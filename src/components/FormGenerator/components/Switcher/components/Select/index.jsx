@@ -1,13 +1,20 @@
-import { InputLabel, MenuItem } from "@mui/material"
+import { Box, InputLabel, MenuItem } from "@mui/material"
 import { randomString } from "../../../../../../utils/random-string.utils"
+import {Select as MUISelect} from "@mui/material"
 
 export const Select = ({ options = [], title, defaultValue, onChange, name }) => {
     const labelId =  randomString();
     const selectListId = randomString();
-    return <>
+    return <Box sx={{padding:"14px"}}>
         <InputLabel id={labelId}>{title}</InputLabel>
-        <Select name={name} label={title} id={selectListId} defaultValue={defaultValue} onChange={onChange}>
-            {options.map((item) => <MenuItem value={item.value ?? item}>{item.text ?? item}</MenuItem>)}
-        </Select>
-    </>
+        <MUISelect name={name} 
+        labelId={labelId}  
+        label={title}
+        id={selectListId} 
+        defaultValue={defaultValue}
+         onChange={onChange}>
+            {options.map((item) => <MenuItem key={randomString()} 
+            value={item.value ?? item}>{item.text ?? item}</MenuItem>)}
+        </MUISelect>
+    </Box>
 }

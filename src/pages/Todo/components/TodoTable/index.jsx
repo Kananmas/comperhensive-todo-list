@@ -19,10 +19,12 @@ export function TodoTable() {
         </TableHead>
         <TableBody>
             {todos.map(((todo, index) => {
-                const { text, done } = todo;
+                const { text, done , startDate , priority } = todo;
                 return <TableRow key={randomString()}>
                     <TableCell>{index}</TableCell>
                     <TableCell>{text}</TableCell>
+                    <TableCell>{startDate.toDateString()}</TableCell>
+                    <TableCell>{priority}</TableCell>
                     <TableCell>
                         <Checkbox value={done} onChange={() => {
                             todo.done = !done
