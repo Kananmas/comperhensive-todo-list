@@ -1,3 +1,5 @@
+import { CLEAR_AUTH_STATE, SET_AUTH_STATE } from "./auth.constants";
+
 export const initialState = {
     token:"",
     authorized:false,

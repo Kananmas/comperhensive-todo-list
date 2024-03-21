@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 
 export function FormGenerator({fields=[] , onSubmit}) {
     const [formData , setFormData] =  useState({});
+    let formDataCopy = {...formData};
 
     useEffect(() => {
         const defaultData = {};
@@ -12,6 +13,7 @@ export function FormGenerator({fields=[] , onSubmit}) {
             defaultData[field.name] = field.defaultValue ?? "";
         }
         setFormData(defaultData);
+        formDataCopy = defaultData;
     },[])
 
     const onChange = (e) => {
@@ -19,11 +21,11 @@ export function FormGenerator({fields=[] , onSubmit}) {
         const value = e.target.value
 
         const updatedData = {...formData , [name]:value};
-        setFormData(updatedData);
+        formDataCopy = updatedData;
     }
 
     const handleOnSubmit = () => {
-        onSubmit(formData);
+        onSubmit(formDataCopy);
     }
 
     return <FormGroup onSubmit={handleOnSubmit}>
