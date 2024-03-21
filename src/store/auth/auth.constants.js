@@ -1,0 +1,2 @@
+export const SET_AUTH_STATE = "SET_AUTH_STATE";
+export const CLEAR_AUTH_STATE  = "CLAER_AUTH_STATE";
