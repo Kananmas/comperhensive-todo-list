@@ -1,8 +1,7 @@
-import { Button, Checkbox, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from "@mui/material";
+import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from "@mui/material";
 import { TodoItem } from "../../../../classes/todo-item.class";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { randomString } from "../../../../utils/random-string.utils";
-import { removeTodoAction } from "../../../../store/todo/todo.actions";
 import { TodoRow } from "./compoents/TodoRow";
 
 export function TodoTable() {
