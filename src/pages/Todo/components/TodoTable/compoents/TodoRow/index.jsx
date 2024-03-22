@@ -31,7 +31,8 @@ export const TodoRow = ({ todo, index }) => {
     const rowButtonStyles ={
         bgcolor: "red", color: "white", "&:hover": {
             color: "blue"
-        }
+        },
+        marginLeft:"12px"
     }
     return <TableRow>
         <TableCell>

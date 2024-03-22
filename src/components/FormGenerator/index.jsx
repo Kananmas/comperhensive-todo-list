@@ -1,12 +1,12 @@
-import { Box, Button, FormGroup, Grid } from "@mui/material";
+import { Box, Button } from "@mui/material";
 import { Switcher } from "./components/Switcher";
 import { randomString } from "../../utils/random-string.utils";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Upload } from "@mui/icons-material";
 
 
 
-export function FormGenerator({ fields = [], onSubmit }) {
+export function FormGenerator({ fields = [], onSubmit  , sx}) {
     let formData = {};
 
 
@@ -26,12 +26,12 @@ export function FormGenerator({ fields = [], onSubmit }) {
         formData = updatedData;
     }
 
-    const handleOnSubmit = (e) => {
+    const handleOnSubmit = () => {
         onSubmit(formData);
     }
 
-    return <Box>
-        <Box>
+    return <Box >
+        <Box sx={sx}>
             {
                 fields.map((item) => 
                 <Switcher 

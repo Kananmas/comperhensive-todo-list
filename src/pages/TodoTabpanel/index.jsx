@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 
 export function TodoTabpanel() {
     const [state, setState] = useState(0);
-    const data =  useSelector((store) => store.todo.selectedTodo.todo);
+    const data = useSelector((store) => store.todo.selectedTodo.todo);
     debugger;
     const handleChangeTab = (e, newVal) => {
         setState(newVal)
@@ -21,11 +21,14 @@ export function TodoTabpanel() {
             <Tab label="Todo Steps" value={1}>
             </Tab>
         </Tabs>
-        <TabPanel selectedTab={1} tabValue={state}>
-            <StepsTable />
-        </TabPanel>
         <TabPanel selectedTab={0} tabValue={state}>
-            <FormGenerator fields={todoForm(data)} onSubmit={() => { }} />
+            <Box sx={{ width: "50%", marginLeft: "auto", marginRight: "auto"  , textAlign:"center"}}>
+                <FormGenerator fields={todoForm(data)} onSubmit={() => { }} />
+            </Box>
+        </TabPanel>
+        <TabPanel selectedTab={1} tabValue={state}>
+
+            <StepsTable />
         </TabPanel>
     </Box>
 }
