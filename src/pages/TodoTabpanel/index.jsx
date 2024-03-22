@@ -6,29 +6,33 @@ import { useState } from "react";
 import { TabPanel } from "./components/TabPanel";
 import { useSelector } from "react-redux";
 
+const formStyles = { width: "50%", marginLeft: "auto", marginRight: "auto", textAlign: "center" }
+const tableStyles = { width: "80%", marginLeft: "auto", marginRight: "auto" };
+
+
 export function TodoTabpanel() {
     const [state, setState] = useState(0);
     const data = useSelector((store) => store.todo.selectedTodo.todo);
-    debugger;
     const handleChangeTab = (e, newVal) => {
         setState(newVal)
     }
-
+   
     return <Box>
         <Tabs value={state} onChange={handleChangeTab}>
-            <Tab label="Edit Todo" value={0}>
-            </Tab>
-            <Tab label="Todo Steps" value={1}>
-            </Tab>
+            <Tab label="Edit Todo" value={0}/>
+            <Tab label="Todo Steps" value={1}/>
+            <Tab label="Time line" value={2}/>
+            <Tab label="Calender" value={3}/>
         </Tabs>
         <TabPanel selectedTab={0} tabValue={state}>
-            <Box sx={{ width: "50%", marginLeft: "auto", marginRight: "auto"  , textAlign:"center"}}>
+            <Box sx={formStyles}>
                 <FormGenerator fields={todoForm(data)} onSubmit={() => { }} />
             </Box>
         </TabPanel>
         <TabPanel selectedTab={1} tabValue={state}>
-
-            <StepsTable />
+            <Box sx={tableStyles}>
+                <StepsTable />
+            </Box>
         </TabPanel>
     </Box>
 }
