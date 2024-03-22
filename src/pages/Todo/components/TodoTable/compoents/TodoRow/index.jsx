@@ -10,7 +10,9 @@ export const TodoRow = ({ todo, index }) => {
         dispatch(removeTodoAction(todo))
     }
 
-    const cells = Object.entries(todo).filter(([key, value]) => key !== "id" && key !== "userId").map(([key, value]) => {
+    const cells = Object.entries(todo)
+    .filter(([key, value]) => key !== "id" && key !== "userId")
+    .map(([key, value]) => {
         if (value instanceof Date) {
             value = value.toDateString()
         }
@@ -29,7 +31,7 @@ export const TodoRow = ({ todo, index }) => {
             })
         }
         <TableCell>
-            <CheckBox onChange={() => todo.isDone = !todo.isDone} value={todo.isDone ?? false} />
+            <CheckBox onChange={() => todo.isDone = !todo.isDone} />
         </TableCell>
         <TableCell>
             <Button onClick={() => handleClickDelete(todo)} sx={{
