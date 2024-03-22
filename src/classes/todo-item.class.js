@@ -4,5 +4,7 @@ export class TodoItem {
     text="";
     priority = "";
     startDate=new Date();
+    plannedEndDate=new Date();
+    endDate=new Date();
     isDone=false;
 }
