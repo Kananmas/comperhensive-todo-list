@@ -2,12 +2,17 @@ import { Button, TableCell, TableRow, Typography } from "@mui/material"
 import { randomString } from "../../../../../../utils/random-string.utils"
 import { CheckBox } from "@mui/icons-material"
 import { useDispatch } from "react-redux"
-import { removeTodoAction } from "../../../../../../store/todo/todo.actions"
+import { removeTodoAction, setSelectedTodo } from "../../../../../../store/todo/todo.actions"
 
 export const TodoRow = ({ todo, index }) => {
     const dispatch =  useDispatch()
-    const handleClickDelete = (todo) => {
+    const handleClickDelete = () => {
         dispatch(removeTodoAction(todo))
+    }
+
+    const handleClickDetails = () => {
+        //**get todo steps via request */
+        dispatch(setSelectedTodo({todo , steps:[]}))
     }
 
     const cells = Object.entries(todo)
@@ -19,6 +24,12 @@ export const TodoRow = ({ todo, index }) => {
 
         return [key, value];
     })
+
+    const rowButtonStyles ={
+        bgcolor: "red", color: "white", "&:hover": {
+            color: "blue"
+        }
+    }
     return <TableRow>
         <TableCell>
             {index + 1}
@@ -34,12 +45,11 @@ export const TodoRow = ({ todo, index }) => {
             <CheckBox onChange={() => todo.isDone = !todo.isDone} />
         </TableCell>
         <TableCell>
-            <Button onClick={() => handleClickDelete(todo)} sx={{
-                bgcolor: "red", color: "white", "&:hover": {
-                    color: "blue"
-                }
-            }}>
+            <Button onClick={handleClickDelete} sx={rowButtonStyles}>
                 <Typography variant="button">DELETE</Typography>
+            </Button>
+            <Button onClick={() => handleClickDelete(todo)} sx={{...rowButtonStyles , bgcolor:"orange"}}>
+                <Typography variant="button">SHOW DETAILS</Typography>
             </Button>
         </TableCell>
     </TableRow>

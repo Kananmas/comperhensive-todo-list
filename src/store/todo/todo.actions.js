@@ -1,4 +1,4 @@
-import { CLEAR_TODOS, REMOVE_TODO, SET_SELECTED_TODO, SET_TODO, SET_TODOS } from "./todo.constants";
+import { CLEAR_SELECTED_TODO, CLEAR_TODOS, REMOVE_TODO, SET_SELECTED_TODO, SET_TODO, SET_TODOS } from "./todo.constants";
 
 export function setTodoAction(payload) {
     return {
@@ -32,5 +32,11 @@ export function setSelectedTodo(payload) {
     return {
         type:SET_SELECTED_TODO,
         payload
+    }
+}
+
+export function clearSelectedTodo() {
+    return {
+        type:CLEAR_SELECTED_TODO
     }
 }

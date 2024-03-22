@@ -1,10 +1,10 @@
-import { CLEAR_TODOS, REMOVE_TODO, SET_SELECTED_TODO, SET_TODO, SET_TODOS } from "./todo.constants";
+import { CLEAR_SELECTED_TODO, CLEAR_TODOS, REMOVE_TODO, SET_SELECTED_TODO, SET_TODO, SET_TODOS } from "./todo.constants";
 
 export const initialState = {
     todos : [],
     selectedTodo:{
         todo:{},
-        todoStops:[],
+        todoSteps:[],
     }
 }
 
@@ -22,6 +22,8 @@ export const todosReducer = (state = initialState , action) => {
             return {...state , todos:[...state.todos , action.payload]}
         case SET_SELECTED_TODO:
             return {...state , selectedTodo:action.payload}
+        case CLEAR_SELECTED_TODO:
+            return {...state , selectedTodo:initialState.selectedTodo}
         default:
             return {...initialState}
     }

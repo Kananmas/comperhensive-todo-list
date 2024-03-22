@@ -1,5 +1,5 @@
 import { TableCell, TableHead, TableRow, Typography } from "@mui/material";
-import { TodoStep } from "../../../../../../classes/todo-steop.class";
+import { TodoStep } from "../../../../../../classes/todo-step.class";
 import { randomString } from "../../../../../../utils/random-string.utils";
 
 export function StepsTableHead() {
