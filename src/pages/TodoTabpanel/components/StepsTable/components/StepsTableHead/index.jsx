@@ -6,12 +6,11 @@ export function StepsTableHead() {
     const tableColumns = Object.keys(new TodoStep())
     .filter((item) => item !== "id" && item !== "todoId" );
 
-
     return <TableHead>
         <TableRow>
             {
                 tableColumns.map((column) => {
-                    <TableCell key={randomString()}>
+                    return <TableCell key={randomString()}>
                         <Typography variant="button">{column}</Typography>
                     </TableCell>
                 })

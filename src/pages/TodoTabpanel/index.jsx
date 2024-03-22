@@ -1,13 +1,31 @@
-import { Tab, Tabs } from "@mui/material";
+import { Box, Tab, Tabs } from "@mui/material";
 import { StepsTable } from "./components/StepsTable";
+import { FormGenerator } from "../../components/FormGenerator";
+import { todoForm } from "../../utils/todo-form.utils";
+import { useState } from "react";
+import { TabPanel } from "./components/TabPanel";
+import { useSelector } from "react-redux";
 
 export function TodoTabpanel() {
+    const [state, setState] = useState(0);
+    const data =  useSelector((store) => store.todo.selectedTodo.todo);
+    debugger;
+    const handleChangeTab = (e, newVal) => {
+        setState(newVal)
+    }
 
-    return <Tabs>
-        <Tab>
+    return <Box>
+        <Tabs value={state} onChange={handleChangeTab}>
+            <Tab label="Edit Todo" value={0}>
+            </Tab>
+            <Tab label="Todo Steps" value={1}>
+            </Tab>
+        </Tabs>
+        <TabPanel selectedTab={1} tabValue={state}>
             <StepsTable />
-        </Tab>
-        <Tab>
-        </Tab>
-    </Tabs>
+        </TabPanel>
+        <TabPanel selectedTab={0} tabValue={state}>
+            <FormGenerator fields={todoForm(data)} onSubmit={() => { }} />
+        </TabPanel>
+    </Box>
 }

@@ -6,6 +6,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { Todo } from './pages/Todo';
 import { SignIn } from './pages/Signin';
 import { SignUp } from './pages/Singup';
+import { TodoTabpanel } from './pages/TodoTabpanel';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route path='/' Component={Todo}/>
           <Route path='/signin' Component={SignIn}/>
           <Route path='/signup' Component={SignUp}/>
+          <Route path='/todoinfo' Component={TodoTabpanel}/>
         </Routes>
       </BrowserRouter>
     </Provider>

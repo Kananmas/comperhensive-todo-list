@@ -1,6 +1,6 @@
 import { Dialog, DialogContent } from "@mui/material";
 import { FormGenerator } from "../../../../components/FormGenerator";
-import { todoForm } from "./utils/form.utils";
+import { todoForm } from "../../../../utils/todo-form.utils";
 import { useDispatch } from "react-redux";
 import { setTodoAction } from "../../../../store/todo/todo.actions";
 

@@ -3,16 +3,19 @@ import { randomString } from "../../../../../../utils/random-string.utils"
 import { CheckBox } from "@mui/icons-material"
 import { useDispatch } from "react-redux"
 import { removeTodoAction, setSelectedTodo } from "../../../../../../store/todo/todo.actions"
+import { useNavigate } from "react-router-dom"
 
 export const TodoRow = ({ todo, index }) => {
     const dispatch =  useDispatch()
+    const nav = useNavigate();
     const handleClickDelete = () => {
         dispatch(removeTodoAction(todo))
     }
 
     const handleClickDetails = () => {
         //**get todo steps via request */
-        dispatch(setSelectedTodo({todo , steps:[]}))
+        dispatch(setSelectedTodo({todo , steps:[]}));
+        nav("/todoinfo");
     }
 
     const cells = Object.entries(todo)
@@ -48,7 +51,7 @@ export const TodoRow = ({ todo, index }) => {
             <Button onClick={handleClickDelete} sx={rowButtonStyles}>
                 <Typography variant="button">DELETE</Typography>
             </Button>
-            <Button onClick={() => handleClickDelete(todo)} sx={{...rowButtonStyles , bgcolor:"orange"}}>
+            <Button onClick={handleClickDetails} sx={{...rowButtonStyles , bgcolor:"orange"}}>
                 <Typography variant="button">SHOW DETAILS</Typography>
             </Button>
         </TableCell>
