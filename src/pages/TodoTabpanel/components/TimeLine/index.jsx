@@ -21,26 +21,30 @@ const timeEvent = {
     height: "16px",
     width: "16px",
 }
-const floatLeft = { position: "absolute", left: "5%", maxWidth: "30%"  , padding:'12px'}
-const floatRight = { position: "absolute", right: "5%", maxWidth: "30%" , padding:"12px" }
+const floatLeft = { position: "absolute", left: "5%", maxWidth: "30%", padding: '12px' }
+const floatRight = { position: "absolute", right: "5%", maxWidth: "30%", padding: "12px" }
 const dateText = { padding: "12px", background: "gainsboro", borderRadius: "12px" };
 
 export function StepsTimeline() {
     const steps = useSelector((store) => store.todo.selectedTodo.steps);
 
+    if (!steps.length) return <div style={{ textAlign: "center"}}><Typography variant="button">
+        there are not steps defined for this item
+    </Typography></div>
+    
     return <div style={styles}>
         {
             steps.map((item, index) => {
                 return <Paper key={randomString()} sx={timeEvent}>
                     <Paper sx={index % 2 === 0 ? floatLeft : floatRight}>
                         <Typography sx={dateText} variant="h6">
-                          Start:  {item.startDate.toDateString()}
+                            Start:  {item.startDate.toDateString()}
                         </Typography>
-                        <Box sx={{marginTop:"12px"}}>
-                            Lorem ipsum dolor sitamet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Gravida rutrum quisque non tellus. Elit pellentesque habitant morbi tristique senectus et netus. In massa tempor nec feugiat nisl pretium fusce id. Adipiscing commodo elit at imperdiet dui. Sed viverra ipsum nunc aliquet bibendum enim facilisis. Ultrices tincidunt arcu non sodales neque. Ultrices neque ornare aenean euismod elementum nisi quis eleifend quam. Vitae suscipit tellus mauris a diam maecenas sed enim. Eros in cursus turpis massa tincidunt dui ut ornare lectus. Amet nisl purus in mollis nunc sed id semper risus.
+                        <Box sx={{ marginTop: "12px" }}>
+                            {item.discription}
                         </Box>
-                        <Typography sx={{...dateText , marginTop:"12px"}} variant="h6">
-                           End: {item.endDate.toDateString()}
+                        <Typography sx={{ ...dateText, marginTop: "12px" }} variant="h6">
+                            End: {item.endDate.toDateString()}
                         </Typography>
                     </Paper>
 

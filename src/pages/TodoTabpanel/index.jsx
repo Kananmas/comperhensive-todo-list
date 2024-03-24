@@ -1,11 +1,16 @@
 import { Box, Tab, Tabs } from "@mui/material";
 import { StepsTable } from "./components/StepsTable";
 import { FormGenerator } from "../../components/FormGenerator";
-import { todoForm } from "../../utils/todo-form.utils";
-import { useState } from "react";
 import { TabPanel } from "./components/TabPanel";
-import { useSelector } from "react-redux";
 import { StepsTimeline } from "./components/TimeLine";
+import { StepsCalender } from "./components/Calender";
+
+import { todoForm } from "../../utils/todo-form.utils";
+
+
+import { useSelector } from "react-redux";
+import { useState } from "react";
+
 
 const formStyles = { width: "50%", marginLeft: "auto", marginRight: "auto", textAlign: "center" }
 const tableStyles = { width: "80%", marginLeft: "auto", marginRight: "auto" };
@@ -37,6 +42,9 @@ export function TodoTabpanel() {
         </TabPanel>
         <TabPanel selectedTab={2} tabValue={state}>
             <StepsTimeline />
+        </TabPanel>
+        <TabPanel selectedTab={3} tabValue={state}>
+            <StepsCalender />
         </TabPanel>
     </Box>
 }

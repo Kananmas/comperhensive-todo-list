@@ -1,3 +1,3 @@
-export function CalenderCell({cellData}) {
-
+export function CalenderCell(props) {
+    console.log(props)
 }
