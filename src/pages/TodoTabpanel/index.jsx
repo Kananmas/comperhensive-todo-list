@@ -5,6 +5,7 @@ import { todoForm } from "../../utils/todo-form.utils";
 import { useState } from "react";
 import { TabPanel } from "./components/TabPanel";
 import { useSelector } from "react-redux";
+import { StepsTimeline } from "./components/TimeLine";
 
 const formStyles = { width: "50%", marginLeft: "auto", marginRight: "auto", textAlign: "center" }
 const tableStyles = { width: "80%", marginLeft: "auto", marginRight: "auto" };
@@ -33,6 +34,9 @@ export function TodoTabpanel() {
             <Box sx={tableStyles}>
                 <StepsTable />
             </Box>
+        </TabPanel>
+        <TabPanel selectedTab={2} tabValue={state}>
+            <StepsTimeline />
         </TabPanel>
     </Box>
 }
