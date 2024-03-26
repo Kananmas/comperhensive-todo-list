@@ -6,4 +6,4 @@ const result = await response.json();
 const dictionaryContext = createContext({
     data:result,
     lang:"en",
-});
+}); 

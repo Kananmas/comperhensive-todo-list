@@ -5,5 +5,7 @@ export function SignUp() {
     const form = authForm("signup");
 
 
-    return <FormGenerator fields={form} />
+    return <div style={{textAlign:"center"}}>
+         <FormGenerator fields={form} sx={{textAlign:"start"}}/>
+    </div>
 }
