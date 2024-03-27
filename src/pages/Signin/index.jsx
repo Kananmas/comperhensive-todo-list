@@ -9,8 +9,7 @@ export function SignIn() {
     const dispatch = useDispatch();
 
     const handleSubmit = async (data) => {
-        const userService = new UserServices();
-        debugger;
+      try { const userService = new UserServices();
         const result = await userService.signIn(data.userName,
             data.password,
             data.email);
@@ -26,7 +25,10 @@ export function SignIn() {
             }
         }
 
-        dispatch(setAuthStateAction(payload));
+        dispatch(setAuthStateAction(payload));}
+        catch(e) {
+            console.log(e)
+        }
     }
 
     return <div style={{ textAlign: "center", width: "50%", margin: "12px auto" }}>

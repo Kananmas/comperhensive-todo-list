@@ -24,8 +24,12 @@ export class TodoService extends BasicService {
     }
 
     async postTodoByData(data) {
-        const response  = await this.axiosInstance.post(`${this.controllerPath}/postbydata` ,  {
-            body:JSON.stringify(data),
+        const form = new FormData();
+        form.append("data" , JSON.stringify(data))
+        const response  = await this.axiosInstance.post(`${this.controllerPath}/postbydata` , from , {
+            headers:{
+                "Content-Type":"application/json"
+            }
         })
 
         return response.data;
@@ -33,8 +37,12 @@ export class TodoService extends BasicService {
 
     
     async postTodoByData(data) {
-        const response  = await this.axiosInstance.put(`${this.controllerPath}/putbydata` ,  {
-            body:JSON.stringify(data),
+        const form = new FormData();
+        form.append("data" , JSON.stringify(data))
+        const response  = await this.axiosInstance.put(`${this.controllerPath}/putbydata` , form,  {
+            headers:{
+                "Content-Type":"application/json"
+            }
         })
 
         return response.data;

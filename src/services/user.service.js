@@ -35,10 +35,15 @@ export class UserServices extends BasicService {
 
 
     async signUp(body) {
-        const endPoint = `${this.controllerPath}/signup`
-        const response = await this.axiosInstance.post(endPoint , {
-            body:JSON.stringify(body)
-        })
+        const endPoint = `${this.controllerPath}signup`
+        const formData = new FormData();
+        formData.append("data" , JSON.stringify(body))
+        const response = await this.axiosInstance.post(endPoint  , formData , {
+            headers:  {
+                "Content-Type":"multipart/form-data",
+            },
+            
+        } )
 
         if(response.data) {
             return response.data;
@@ -55,8 +60,12 @@ export class UserServices extends BasicService {
 
     async putByData(data) {
         const endPoint = `${this.controllerPath}/putbydata`
-        const response = await this.axiosInstance.put(endPoint , {
-            body:JSON.stringify(data)
+        const form = new FormData();
+        form.append("data" , JSON.stringify(data))
+        const response = await this.axiosInstance.put(endPoint , form , {
+            headers:{
+                "Content-Type":"application/json"
+            }
         })
 
         if(response.data) {

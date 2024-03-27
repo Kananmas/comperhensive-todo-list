@@ -25,16 +25,24 @@ export class TodoStepService extends BasicService {
     }
 
     async postStepByData(data) {
-        const response = await this.axiosInstance.post(`${this.controllerPath}/postbydata` , {
-            body:JSON.stringify(data)
+        const form = new FormData();
+        form.append("data" , JSON.stringify(data));
+        const response = await this.axiosInstance.post(`${this.controllerPath}/postbydata`, form , {
+            headers:{
+                "Content-Type":"application/json"
+            }
         })
 
         if(response.data) return response.data;
     }
 
     async putStepByData(data) {
-        const response = await this.axiosInstance.put(`${this.controllerPath}/putbydata` , {
-            body:JSON.stringify(data),
+        const form = new FormData();
+        form.append("data" , JSON.stringify(data))
+        const response = await this.axiosInstance.put(`${this.controllerPath}/putbydata`, form , {
+            headers:{
+                "Content-Type":"application/json"
+            }
         })
 
         if(response.data) return response.data;
