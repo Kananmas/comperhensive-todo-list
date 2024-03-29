@@ -7,8 +7,10 @@ import { Todo } from './pages/Todo';
 import { SignIn } from './pages/Signin';
 import { SignUp } from './pages/Singup';
 import { TodoTabpanel } from './pages/TodoTabpanel';
+import { checkForJwt } from './utils/check-for-jwt.utils';
 
 function App() {
+ checkForJwt();
   return (
     <Provider store={store}>
       <BrowserRouter>

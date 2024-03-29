@@ -1,4 +1,5 @@
 import { BasicService } from "./basic.service";
+import { getDefaultHeaders } from "./utils/get-default-headers.utils";
 
 export class TodoStepService extends BasicService {
     controllerName = "TodoSteps/"
@@ -10,7 +11,8 @@ export class TodoStepService extends BasicService {
 
     async getStepById(id) {
         const response = await this.axiosInstance.get(`${this.controllerPath}/getstepbyid` , {
-            params:{id}
+            params:{id},
+            headers:getDefaultHeaders(),
         })
 
         if(response.data) return response.data;
@@ -18,7 +20,8 @@ export class TodoStepService extends BasicService {
 
     async getStepByTodoid(id) {
         const response  = await this.axiosInstance.get(`${this.controllerPath}/getstepbytodoid` , {
-            params:{id}
+            params:{id},
+            headers:getDefaultHeaders(),
         })
 
         if(response.data) return response.data;
@@ -27,9 +30,11 @@ export class TodoStepService extends BasicService {
     async postStepByData(data) {
         const form = new FormData();
         form.append("data" , JSON.stringify(data));
+        const _headers = getDefaultHeaders()
         const response = await this.axiosInstance.post(`${this.controllerPath}/postbydata`, form , {
             headers:{
-                "Content-Type":"application/json"
+                "Content-Type":"multipart/form-data",
+                ..._headers,
             }
         })
 
@@ -39,9 +44,11 @@ export class TodoStepService extends BasicService {
     async putStepByData(data) {
         const form = new FormData();
         form.append("data" , JSON.stringify(data))
+        const _headers = getDefaultHeaders()
         const response = await this.axiosInstance.put(`${this.controllerPath}/putbydata`, form , {
             headers:{
-                "Content-Type":"application/json"
+                "Content-Type":"multipart/form-data",
+                ..._headers
             }
         })
 
@@ -50,7 +57,8 @@ export class TodoStepService extends BasicService {
 
     async deleteById(id) {
         await this.axiosInstance.delete(`${this.controllerPath}/deletebyid` , {
-            params:{id}
+            params:{id},
+            headers:getDefaultHeaders(),
         })
     }
 }

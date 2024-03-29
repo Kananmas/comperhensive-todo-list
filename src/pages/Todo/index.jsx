@@ -1,15 +1,29 @@
 import { Box, Button, Typography } from "@mui/material";
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { Add } from "@mui/icons-material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { TodoTable } from "./components/TodoTable";
 import { FormDialog } from "./components/FormDialog";
+import { TodoService } from "../../services/todo.service";
+import { setTodosAction } from "../../store/todo/todo.actions";
+import { useNavigate } from "react-router-dom";
 
 export const Todo = () => {
     const todos = useSelector((store) => store.todo.todos);
+    const  nav = useNavigate();
+    const dispatch = useDispatch();
     const [open , setOpen] = useState(false)
 
     const handleClickAdd = () => setOpen(true)
+
+    useEffect(() => {
+        const todoService = new TodoService();
+        todoService.getByTodosByUserId().then((data) => {
+          dispatch(setTodosAction(data))
+        }).catch((e) => {
+            
+        })
+      },[])
     
     return <>
         <Box sx={{ display: "flex", flexDirection: "row-reverse", padding: "12px" }}>

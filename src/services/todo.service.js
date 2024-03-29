@@ -1,4 +1,5 @@
 import { BasicService } from "./basic.service";
+import { getDefaultHeaders } from "./utils/get-default-headers.utils";
 
 export class TodoService extends BasicService {
     controllerName = "Todos/"
@@ -9,15 +10,16 @@ export class TodoService extends BasicService {
     }
 
     async getTodoById(id) {
-        const response  = await this.axiosInstance.get(`${this.controllerPath}/gettodobyid`, {
-            params:{id}
+        const response  = await this.axiosInstance.get(`${this.controllerPath}gettodobyid`, {
+            params:{id},
+            headers:getDefaultHeaders()
         });
 
         if(response.data) return response.data;
     }
-    async getByTodosByUserId(userId) {
-        const response  = await this.axiosInstance.get(`${this.controllerPath}/gettodobyuserid`, {
-            params:{userId}
+    async getByTodosByUserId() {
+        const response  = await this.axiosInstance.get(`${this.controllerPath}gettodobyuserid`, {
+            headers: getDefaultHeaders(),
         });
 
         if(response.data) return response.data;
@@ -26,9 +28,11 @@ export class TodoService extends BasicService {
     async postTodoByData(data) {
         const form = new FormData();
         form.append("data" , JSON.stringify(data))
-        const response  = await this.axiosInstance.post(`${this.controllerPath}/postbydata` , from , {
+        const _headers = getDefaultHeaders();
+        const response  = await this.axiosInstance.post(`${this.controllerPath}postbydata` , form , {
             headers:{
-                "Content-Type":"application/json"
+                "Content-Type":"multipart/form-data",
+                ..._headers
             }
         })
 
@@ -36,12 +40,14 @@ export class TodoService extends BasicService {
     }
 
     
-    async postTodoByData(data) {
+    async putTodoByData(data) {
         const form = new FormData();
         form.append("data" , JSON.stringify(data))
-        const response  = await this.axiosInstance.put(`${this.controllerPath}/putbydata` , form,  {
+        const _headers = getDefaultHeaders()
+        const response  = await this.axiosInstance.put(`${this.controllerPath}putbydata` , form,  {
             headers:{
-                "Content-Type":"application/json"
+                "Content-Type":"multipart/form-data",
+                ..._headers
             }
         })
 
@@ -50,8 +56,9 @@ export class TodoService extends BasicService {
 
 
     async deleteById(id) {
-        await this.axiosInstance.get(`${this.controllerPath}/deletebyid`, {
-            params:{id}
+        await this.axiosInstance.get(`${this.controllerPath}deletebyid`, {
+            params:{id},
+            headers:getDefaultHeaders(),
         });
     }
 }

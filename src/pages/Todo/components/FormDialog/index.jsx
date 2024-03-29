@@ -3,12 +3,20 @@ import { FormGenerator } from "../../../../components/FormGenerator";
 import { todoForm } from "../../../../utils/todo-form.utils";
 import { useDispatch } from "react-redux";
 import { setTodoAction } from "../../../../store/todo/todo.actions";
+import { TodoService } from "../../../../services/todo.service";
 
 export function FormDialog({open , onClose}) {
     const dispatch = useDispatch();
-    function handleSubmitForm(data) {
-        dispatch(setTodoAction(data));
+    async function handleSubmitForm(data) {
+      try {
+        const todoService = new TodoService();
+        const result = await todoService.postTodoByData(data);
+        dispatch(setTodoAction(result));
+      } catch (error) {
+        console.log(error)
+      } finally {
         onClose();
+      }
     }
     return <Dialog open={open} onClose={onClose}>
             <DialogContent>

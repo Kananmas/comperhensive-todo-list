@@ -11,9 +11,10 @@ export function SignUp() {
     const handleSubmit = async (data) => {
         try { const userService = new UserServices();
           const result = await userService.signUp(data);
+          localStorage.setItem("access-token" , result.userToken);
   
           const payload = {
-              token : btoa(JSON.stringify(result)),
+              token : result.userToken,
               authorized:true,
               tokenKeys:{
                   userId:result.Id,
@@ -22,7 +23,7 @@ export function SignUp() {
                   tokenCreation:new Date(),
               }
           }
-  
+          
           dispatch(setAuthStateAction(payload));}
           catch(e) {
               console.log(e)

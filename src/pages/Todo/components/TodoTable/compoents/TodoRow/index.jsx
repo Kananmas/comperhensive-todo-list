@@ -4,18 +4,31 @@ import { CheckBox } from "@mui/icons-material"
 import { useDispatch } from "react-redux"
 import { removeTodoAction, setSelectedTodo } from "../../../../../../store/todo/todo.actions"
 import { useNavigate } from "react-router-dom"
+import { TodoService } from "../../../../../../services/todo.service"
+import { TodoStepService } from "../../../../../../services/todo-step.service"
 
 export const TodoRow = ({ todo, index }) => {
     const dispatch =  useDispatch()
     const nav = useNavigate();
-    const handleClickDelete = () => {
-        dispatch(removeTodoAction(todo))
+    const handleClickDelete = async () => {
+       try {
+        const todoService = new TodoService();
+        await todoService.deleteById(todo.Id);
+        dispatch(removeTodoAction(todo));
+       } catch (error) {
+        console.log(error)
+       }
     }
 
-    const handleClickDetails = () => {
-        //**get todo steps via request */
-        dispatch(setSelectedTodo({todo , steps:[]}));
+    const handleClickDetails = async () => {
+       try {
+        const stepsService = new TodoStepService();
+        const steps = await stepsService.getStepByTodoid(todo.Id)
+        dispatch(setSelectedTodo({todo , steps}));
         nav("/todoinfo");
+       } catch(e) {
+        console.log(e)
+       }
     }
 
     const cells = Object.entries(todo)

@@ -13,9 +13,9 @@ export function SignIn() {
         const result = await userService.signIn(data.userName,
             data.password,
             data.email);
-
+        localStorage.setItem("access-token" , result.userToken);
         const payload = {
-            token : btoa(JSON.stringify(result)),
+            token : result.userToken,
             authorized:true,
             tokenKeys:{
                 userId:result.Id,
