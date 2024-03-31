@@ -4,15 +4,35 @@ import { StepsTableBody } from "./components/StepsTableBody";
 import { Add } from "@mui/icons-material";
 import { StepsForm } from "./components/StepsForm";
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { TodoStepService } from "../../../../services/todo-step.service";
+import { setSelectedTodo } from "../../../../store/todo/todo.actions";
 
 export function StepsTable() {
     const [open , setOpen] = useState(false);
-    const [selectedData , setSelectedData] = useState();
+    const selectedTodo = useSelector((store) => store.todo.selectedTodo.todo)
+    const dispatch = useDispatch();
 
     const handleClickAdd = () => {
         setOpen(true);
     }
+    
+    const fetchLatestSteps = async () => {
+        const todoStepsService = new TodoStepService();
+        const steps =  await todoStepsService.getStepByTodoid(selectedTodo.id);
 
+        dispatch(setSelectedTodo({
+            todo:selectedTodo, 
+            todoSteps:steps,
+        }))
+    }
+
+    const handleClose = () => {
+        fetchLatestSteps().then(() => setOpen(false))
+        .catch((e) => {
+            console.log(e)
+        })
+    }
 
     return <>
         <Box sx={{ display: "flex", flexDirection: "row-reverse", padding: "12px" }}>
@@ -29,7 +49,7 @@ export function StepsTable() {
         </TableContainer>
         <Dialog open={open} onClose={() => setOpen(false)}>
             <DialogContent>
-                <StepsForm data={selectedData} />
+                <StepsForm data={selectedTodo} handleClose={handleClose}/>
             </DialogContent>
         </Dialog>
     </>

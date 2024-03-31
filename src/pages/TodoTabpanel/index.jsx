@@ -19,6 +19,16 @@ const tableStyles = { width: "80%", marginLeft: "auto", marginRight: "auto" };
 export function TodoTabpanel() {
     const [state, setState] = useState(0);
     const data = useSelector((store) => store.todo.selectedTodo.todo);
+    const reformedData = (()=>{
+        const result = {};
+        for(const key in data) {
+            result[key] = data[key];
+            if(typeof data[key] === "string" && key.toLowerCase().endsWith("date"))
+            result[key] = new Date(data[key]).toString();
+        }
+        return result;
+    })()
+    
     const handleChangeTab = (e, newVal) => {
         setState(newVal)
     }
@@ -32,7 +42,7 @@ export function TodoTabpanel() {
         </Tabs>
         <TabPanel selectedTab={0} tabValue={state}>
             <Box sx={formStyles}>
-                <FormGenerator fields={todoForm(data)} onSubmit={() => { }} />
+                <FormGenerator fields={todoForm(reformedData)} onSubmit={() => { }} />
             </Box>
         </TabPanel>
         <TabPanel selectedTab={1} tabValue={state}>

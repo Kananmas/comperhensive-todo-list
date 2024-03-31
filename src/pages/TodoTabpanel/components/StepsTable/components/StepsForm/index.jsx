@@ -1,9 +1,14 @@
 import { stepForm } from "./utils/step-form.utils";
 import { FormGenerator } from "../../../../../../components/FormGenerator";
+import { TodoStepService } from "../../../../../../services/todo-step.service";
+import { useSelector } from "react-redux";
 
-export function StepsForm ({data}) {
-    const handleSumbit = () => {
-
+export function StepsForm ({data , handleClose}) {
+    const currentTodo = useSelector((store) => store.todo.selectedTodo.todo);
+    const handleSumbit = async (data) => {
+        const stepsServices =  new TodoStepService();
+        await stepsServices.postStepByData({...data , todoId:currentTodo.id})
+        handleClose();
     }
 
     return <FormGenerator fields={stepForm(data)} onSubmit={handleSumbit} />

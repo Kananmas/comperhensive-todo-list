@@ -23,8 +23,8 @@ export const TodoRow = ({ todo, index }) => {
     const handleClickDetails = async () => {
        try {
         const stepsService = new TodoStepService();
-        const steps = await stepsService.getStepByTodoid(todo.Id)
-        dispatch(setSelectedTodo({todo , steps}));
+        const steps = await stepsService.getStepByTodoid(todo.id)
+        dispatch(setSelectedTodo({todo , todoSteps:steps}));
         nav("/todoinfo");
        } catch(e) {
         console.log(e)
@@ -32,20 +32,21 @@ export const TodoRow = ({ todo, index }) => {
     }
 
     const cells = Object.entries(todo)
-    .filter(([key, value]) => key !== "id" && key !== "userId")
+    .filter(([key, value]) => key !== "id" && key !== "userId" && key !== "isDone") 
     .map(([key, value]) => {
         if (value instanceof Date) {
             value = value.toDateString()
         }
+        if(key.toLowerCase().endsWith("date") 
+        && typeof value === "string") value = new Date(value).toDateString()
 
         return [key, value];
-    })
-
+    });
+    
     const rowButtonStyles ={
         bgcolor: "red", color: "white", "&:hover": {
             color: "blue"
         },
-        marginLeft:"12px"
     }
     return <TableRow>
         <TableCell>
@@ -53,13 +54,14 @@ export const TodoRow = ({ todo, index }) => {
         </TableCell>
         {
             cells.map(([key, value]) => {
+            
                 return <TableCell key={randomString()}>
                     {value}
                 </TableCell>
             })
         }
         <TableCell>
-            <CheckBox onChange={() => todo.isDone = !todo.isDone} />
+            <CheckBox onChange={() => todo.isDone = !todo.isDone} value/>
         </TableCell>
         <TableCell>
             <Button onClick={handleClickDelete} sx={rowButtonStyles}>

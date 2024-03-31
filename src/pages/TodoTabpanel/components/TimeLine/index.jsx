@@ -26,7 +26,7 @@ const floatRight = { position: "absolute", right: "5%", maxWidth: "30%", padding
 const dateText = { padding: "12px", background: "gainsboro", borderRadius: "12px" };
 
 export function StepsTimeline() {
-    const steps = useSelector((store) => store.todo.selectedTodo.steps);
+    const steps = useSelector((store) => store.todo.selectedTodo.todoSteps);
 
     if (!steps.length) return <div style={{ textAlign: "center"}}><Typography variant="button">
         there are not steps defined for this item
@@ -35,16 +35,17 @@ export function StepsTimeline() {
     return <div style={styles}>
         {
             steps.map((item, index) => {
+                
                 return <Paper key={randomString()} sx={timeEvent}>
                     <Paper sx={index % 2 === 0 ? floatLeft : floatRight}>
                         <Typography sx={dateText} variant="h6">
-                            Start:  {item.startDate.toDateString()}
+                            Start:  {new  Date(item.endDate).toDateString()}
                         </Typography>
                         <Box sx={{ marginTop: "12px" }}>
                             {item.discription}
                         </Box>
                         <Typography sx={{ ...dateText, marginTop: "12px" }} variant="h6">
-                            End: {item.endDate.toDateString()}
+                            End: {new  Date(item.endDate).toDateString()}
                         </Typography>
                     </Paper>
 

@@ -10,7 +10,7 @@ export class TodoStepService extends BasicService {
     }
 
     async getStepById(id) {
-        const response = await this.axiosInstance.get(`${this.controllerPath}/getstepbyid` , {
+        const response = await this.axiosInstance.get(`${this.controllerPath}getstepsbyid` , {
             params:{id},
             headers:getDefaultHeaders(),
         })
@@ -19,7 +19,7 @@ export class TodoStepService extends BasicService {
     }
 
     async getStepByTodoid(id) {
-        const response  = await this.axiosInstance.get(`${this.controllerPath}/getstepbytodoid` , {
+        const response  = await this.axiosInstance.get(`${this.controllerPath}getstepsbytodoid` , {
             params:{id},
             headers:getDefaultHeaders(),
         })
@@ -31,7 +31,7 @@ export class TodoStepService extends BasicService {
         const form = new FormData();
         form.append("data" , JSON.stringify(data));
         const _headers = getDefaultHeaders()
-        const response = await this.axiosInstance.post(`${this.controllerPath}/postbydata`, form , {
+        const response = await this.axiosInstance.post(`${this.controllerPath}postbydata`, form , {
             headers:{
                 "Content-Type":"multipart/form-data",
                 ..._headers,
@@ -45,7 +45,7 @@ export class TodoStepService extends BasicService {
         const form = new FormData();
         form.append("data" , JSON.stringify(data))
         const _headers = getDefaultHeaders()
-        const response = await this.axiosInstance.put(`${this.controllerPath}/putbydata`, form , {
+        const response = await this.axiosInstance.put(`${this.controllerPath}putbydata`, form , {
             headers:{
                 "Content-Type":"multipart/form-data",
                 ..._headers
@@ -56,7 +56,7 @@ export class TodoStepService extends BasicService {
     }
 
     async deleteById(id) {
-        await this.axiosInstance.delete(`${this.controllerPath}/deletebyid` , {
+        await this.axiosInstance.delete(`${this.controllerPath}deletebyid` , {
             params:{id},
             headers:getDefaultHeaders(),
         })
