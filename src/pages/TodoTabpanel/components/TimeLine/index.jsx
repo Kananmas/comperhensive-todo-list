@@ -39,10 +39,10 @@ export function StepsTimeline() {
                 return <Paper key={randomString()} sx={timeEvent}>
                     <Paper sx={index % 2 === 0 ? floatLeft : floatRight}>
                         <Typography sx={dateText} variant="h6">
-                            Start:  {new  Date(item.endDate).toDateString()}
+                            Start:  {new  Date(item.startDate).toDateString()}
                         </Typography>
                         <Box sx={{ marginTop: "12px" }}>
-                            {item.discription}
+                            {item.description}
                         </Box>
                         <Typography sx={{ ...dateText, marginTop: "12px" }} variant="h6">
                             End: {new  Date(item.endDate).toDateString()}

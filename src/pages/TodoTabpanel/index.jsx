@@ -8,8 +8,11 @@ import { StepsCalender } from "./components/Calender";
 import { todoForm } from "../../utils/todo-form.utils";
 
 
-import { useSelector } from "react-redux";
-import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { assignSelectedTodoSteps } from "./services/assign-selected-todo-steps.service";
+import { setSelectedTodo } from "../../store/todo/todo.actions";
 
 
 const formStyles = { width: "50%", marginLeft: "auto", marginRight: "auto", textAlign: "center" }
@@ -19,6 +22,9 @@ const tableStyles = { width: "80%", marginLeft: "auto", marginRight: "auto" };
 export function TodoTabpanel() {
     const [state, setState] = useState(0);
     const data = useSelector((store) => store.todo.selectedTodo.todo);
+    const params = useParams();
+    const dispatch = useDispatch();
+
     const reformedData = (()=>{
         const result = {};
         for(const key in data) {
@@ -32,6 +38,15 @@ export function TodoTabpanel() {
     const handleChangeTab = (e, newVal) => {
         setState(newVal)
     }
+
+    useEffect(() => {
+       if(!Object.entries(data).length) {
+        const {id} = params;
+        assignSelectedTodoSteps(id).then((data) => {
+            dispatch(setSelectedTodo(data))
+        }).catch((e) => console.log(e))
+       }
+    },[data])
    
     return <Box>
         <Tabs value={state} onChange={handleChangeTab}>

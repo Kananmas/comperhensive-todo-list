@@ -21,7 +21,7 @@ function App() {
           <Route path='/' Component={Todo} />
           <Route path='/signin' Component={SignIn} />
           <Route path='/signup' Component={SignUp} />
-          <Route path='/todoinfo' Component={TodoTabpanel} />
+          <Route path='/todoinfo/:id' Component={TodoTabpanel} />
         </Routes>
       </BrowserRouter>
     </Provider>

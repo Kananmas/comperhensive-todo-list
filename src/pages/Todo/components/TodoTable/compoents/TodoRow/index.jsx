@@ -25,7 +25,7 @@ export const TodoRow = ({ todo, index }) => {
         const stepsService = new TodoStepService();
         const steps = await stepsService.getStepByTodoid(todo.id)
         dispatch(setSelectedTodo({todo , todoSteps:steps}));
-        nav("/todoinfo");
+        nav("/todoinfo/"+todo.id);
        } catch(e) {
         console.log(e)
        }
