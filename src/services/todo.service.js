@@ -56,7 +56,7 @@ export class TodoService extends BasicService {
 
 
     async deleteById(id) {
-        await this.axiosInstance.get(`${this.controllerPath}deletebyid`, {
+        await this.axiosInstance.delete(`${this.controllerPath}deletebyid`, {
             params:{id},
             headers:getDefaultHeaders(),
         });

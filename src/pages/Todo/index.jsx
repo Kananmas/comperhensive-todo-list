@@ -16,7 +16,7 @@ export const Todo = () => {
     const handleClickAdd = () => setOpen(true)
 
     useEffect(() => {
-        if (isAuthorized && localStorage.getItem("access-token") != null) {
+        if (isAuthorized) {
             const todoService = new TodoService();
             todoService.getByTodosByUserId().then((data) => {
                 dispatch(setTodosAction(data))

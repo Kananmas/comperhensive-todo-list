@@ -13,7 +13,7 @@ export const TodoRow = ({ todo, index }) => {
     const handleClickDelete = async () => {
        try {
         const todoService = new TodoService();
-        await todoService.deleteById(todo.Id);
+        await todoService.deleteById(todo.id);
         dispatch(removeTodoAction(todo));
        } catch (error) {
         console.log(error)
@@ -44,6 +44,7 @@ export const TodoRow = ({ todo, index }) => {
     });
     
     const rowButtonStyles ={
+        marginLeft:"6px",
         bgcolor: "red", color: "white", "&:hover": {
             color: "blue"
         },
