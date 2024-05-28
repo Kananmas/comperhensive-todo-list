@@ -21,8 +21,8 @@ const timeEvent = {
     height: "16px",
     width: "16px",
 }
-const floatLeft = { position: "absolute", left: "5%", maxWidth: "30%", padding: '12px' }
-const floatRight = { position: "absolute", right: "5%", maxWidth: "30%", padding: "12px" }
+const floatLeft = { position: "absolute", left: "15%", maxWidth: "30%", padding: '12px' }
+const floatRight = { position: "absolute", right: "15%", maxWidth: "30%", padding: "12px" }
 const dateText = { padding: "12px", background: "gainsboro", borderRadius: "12px" };
 
 export function StepsTimeline() {
@@ -31,11 +31,12 @@ export function StepsTimeline() {
     if (!steps.length) return <div style={{ textAlign: "center"}}><Typography variant="button">
         there are not steps defined for this item
     </Typography></div>
-    
+
+    if (steps.length == 1) styles.height = "auto"
+
     return <div style={styles}>
         {
             steps.map((item, index) => {
-                
                 return <Paper key={randomString()} sx={timeEvent}>
                     <Paper sx={index % 2 === 0 ? floatLeft : floatRight}>
                         <Typography sx={dateText} variant="h6">

@@ -1,11 +1,21 @@
-import { Button, TableCell, TableRow, Typography } from "@mui/material"
-import { randomString } from "../../../../../../utils/random-string.utils"
+// components
+import { Button, Input, TableCell, TableRow, Typography } from "@mui/material"
 import { CheckBox } from "@mui/icons-material"
+
+// utils
+import { randomString } from "../../../../../../utils/random-string.utils"
+
+// hooks
 import { useDispatch } from "react-redux"
-import { removeTodoAction, setSelectedTodo } from "../../../../../../store/todo/todo.actions"
 import { useNavigate } from "react-router-dom"
+
+// actions
+import { removeTodoAction, setSelectedTodo } from "../../../../../../store/todo/todo.actions"
+
+// services
 import { TodoService } from "../../../../../../services/todo.service"
 import { TodoStepService } from "../../../../../../services/todo-step.service"
+import { removeKeysFromEntires } from "../../../../../../utils/remove-keys-from-entry.utils"
 
 export const TodoRow = ({ todo, index }) => {
     const dispatch =  useDispatch()
@@ -31,9 +41,7 @@ export const TodoRow = ({ todo, index }) => {
        }
     }
 
-    const cells = Object.entries(todo)
-    .filter(([key, value]) => key !== "id" && key !== "userId" && key !== "isDone") 
-    .map(([key, value]) => {
+    const cells = removeKeysFromEntires(todo , ["userId" , "steps" , "user" , "id" , "isDone"]).map(([key, value]) => {
         if (value instanceof Date) {
             value = value.toDateString()
         }
@@ -49,6 +57,7 @@ export const TodoRow = ({ todo, index }) => {
             color: "blue"
         },
     }
+    
     return <TableRow>
         <TableCell>
             {index + 1}
@@ -62,7 +71,7 @@ export const TodoRow = ({ todo, index }) => {
             })
         }
         <TableCell>
-            <CheckBox onChange={() => todo.isDone = !todo.isDone} value/>
+            <Input type="checkbox"  value={todo.isDone}/>
         </TableCell>
         <TableCell>
             <Button onClick={handleClickDelete} sx={rowButtonStyles}>
