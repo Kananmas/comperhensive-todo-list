@@ -32,7 +32,7 @@ export function StepsTimeline() {
         there are not steps defined for this item
     </Typography></div>
 
-    if (steps.length == 1) styles.height = "auto"
+    styles.height = steps.length == 1 ? "auto":"100vh"
 
     return <div style={styles}>
         {
