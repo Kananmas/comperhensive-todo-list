@@ -1,3 +1,4 @@
+// components
 import { Box, Tab, Tabs } from "@mui/material";
 import { StepsTable } from "./components/StepsTable";
 import { FormGenerator } from "../../components/FormGenerator";
@@ -5,13 +6,18 @@ import { TabPanel } from "./components/TabPanel";
 import { StepsTimeline } from "./components/TimeLine";
 import { StepsCalender } from "./components/Calender";
 
+// form
 import { todoForm } from "../../utils/todo-form.utils";
 
-
+// hooks
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+
+// services
 import { assignSelectedTodoSteps } from "./services/assign-selected-todo-steps.service";
+
+// actions
 import { setSelectedTodo } from "../../store/todo/todo.actions";
 
 
