@@ -8,6 +8,7 @@ import { SignIn } from './pages/Signin';
 import { SignUp } from './pages/Singup';
 import { TodoTabpanel } from './pages/TodoTabpanel';
 import { Header } from './components/Header';
+import { useCheckAuth } from './hooks/check-auth.hook';
 
 function App() {
   return (
