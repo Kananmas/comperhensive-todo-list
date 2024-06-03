@@ -8,7 +8,7 @@ import { SignIn } from './pages/Signin';
 import { SignUp } from './pages/Singup';
 import { TodoTabpanel } from './pages/TodoTabpanel';
 import { Header } from './components/Header';
-import { useCheckAuth } from './hooks/check-auth.hook';
+import { UserPanel } from './pages/UserPanel';
 
 function App() {
   return (
@@ -20,6 +20,7 @@ function App() {
             <Route path='signin' Component={SignIn} />
             <Route path='signup' Component={SignUp} />
             <Route path='todoinfo/:id' Component={TodoTabpanel} />
+            <Route path='user' Component={UserPanel} />
           </Route>
         </Routes>
       </BrowserRouter>

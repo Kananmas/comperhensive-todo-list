@@ -24,7 +24,7 @@ export const Todo = () => {
             const todoService = new TodoService();
             todoService.getByTodosByUserId().then((data) => {
                 dispatch(setTodosAction(data))
-            })
+            }).catch(e => console.log(e))
         }
     }, [isAuthorized])
 

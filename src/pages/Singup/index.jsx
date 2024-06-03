@@ -7,9 +7,10 @@ import { setAuthStateAction } from "../../store/auth/auth.actions";
 export function SignUp() {
     const form = authForm("signup");
     const dispatch =  useDispatch();
+    const userService = new UserServices();
 
     const handleSubmit = async (data) => {
-        try { const userService = new UserServices();
+        try { 
           const result = await userService.signUp(data);
           localStorage.setItem("access-token" , result.userToken);
   

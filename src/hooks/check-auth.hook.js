@@ -1,7 +1,7 @@
 
 import { useLocation, useNavigate } from "react-router-dom"
-import { useSelector } from "react-redux"
-import { useEffect, useMemo } from "react";
+import { useEffect } from "react";
+import { checkForJwt } from "../utils/check-for-jwt.utils";
 
 
 const publicPaths = ['/signin', '/signup']
@@ -9,18 +9,21 @@ const publicPaths = ['/signin', '/signup']
 export const useCheckAuth = () => {
     const path = useLocation();
     const nav = useNavigate();
-    const authState = useSelector((store) => store.auth)
-
-    const isAuthorized = useMemo(() => {
-        if (publicPaths.includes(path.pathname)) return true;
-        return authState.authorized
-    }, [path, authState])
+    const hasJwt = localStorage.getItem("access-token") !== null;
 
     useEffect(() => {
-        if (isAuthorized) return;
-        if (!isAuthorized && !publicPaths.includes(path.pathname)) {
+        checkForJwt();
+    },[])
+
+    useEffect(() => {
+        if (!hasJwt ) {
+            if(publicPaths.includes(path.pathname)) return;
             nav("/signin")
+            return;
         }
-    }, [isAuthorized, path])
+        if(publicPaths.includes(path.pathname)) {
+            nav("/")
+        }
+    }, [path])
 
 }
