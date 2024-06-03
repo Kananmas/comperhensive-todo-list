@@ -11,7 +11,8 @@ import { useProportion } from "../../hooks/proportion.hook";
 export function Header() {
   useCheckAuth();
   const nav = useNavigate();
-  const proportion = useProportion(35);
+  const {pWidth , pHeight , custom} = useProportion(35);
+  const stdFontSize = 16;
 
   const handleClickAccount = () => {
     nav("/user")
@@ -22,21 +23,21 @@ export function Header() {
       {links.map((item) => <HeaderLink
         key={randomString()}
         {...item}
-        sx={{ ...item.sx, fontSize:proportion.custom(item?.sx?.fontSize??16).width }}
+        sx={{ ...item.sx, fontSize:custom(item?.sx?.fontSize??stdFontSize).width }}
       />)}
 
       <Box
         sx={userBoxStyles}
       >
-        <IconButton onClick={handleClickAccount}>
-          <AccountCircle color="primary" style={{ width: proportion.pWidth, 
-            height: proportion.pHeight }} />
+        <IconButton onClick={handleClickAccount}> 
+          <AccountCircle color="primary" style={{ width:pWidth, 
+            height:pHeight }} />
         </IconButton>
         <Select
-          sx={userSelectBox}>
+          sx={{...userSelectBox }}>
           <MenuItem>
-            <Logout />
-            <Typography variant="button" padding={"0px  12px"}>
+            <Logout width={custom(stdFontSize).width} height={custom(stdFontSize).height}/>
+            <Typography fontSize={custom(stdFontSize).width} variant="button" padding={"0px  12px"}>
               Log out
             </Typography>
           </MenuItem>

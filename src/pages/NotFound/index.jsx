@@ -3,13 +3,13 @@ import { Box, Typography } from "@mui/material";
 import { useProportion } from "../../hooks/proportion.hook";
 
 export function NotFound() {
-    const proportion = useProportion(360)
+    const {pWidth, pHeight , custom} = useProportion(360)
 
-    return <Box sx={{textAlign:"center" , marginTop:"12.5%"}}>
+    return <Box sx={{textAlign:"center"}}>
         <Box>
-        <WebAssetOff  style={{width:proportion.pWidth , height:proportion.pHeight , color:"gainsboro"}} />
+        <WebAssetOff  style={{width:pWidth , height:pHeight , color:"gainsboro"}} />
         </Box>
-        <Typography variant="button" fontSize={proportion.custom(24).width}>
+        <Typography variant="button" fontSize={custom(24).width}>
             Page Not Found
         </Typography>
     </Box>
