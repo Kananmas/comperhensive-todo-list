@@ -13,7 +13,7 @@ import { useDictionary } from "../../../../hooks/dictionary.hook";
 
 export function StepsTimeline() {
     const steps = useSelector((store) => store.todo.selectedTodo.todoSteps);
-    const {getWord} = useDictionary();
+    const {getWord , translateDate} = useDictionary();
 
     if (!steps.length) return <div style={{ textAlign: "center"}}><Typography variant="button">
         there are not steps defined for this item
@@ -24,13 +24,13 @@ export function StepsTimeline() {
     return <div style={lineStyles}>
         {
             steps.map((item, index) => {
-                var endDateStr = item.endDate ? new  Date(item.endDate).toDateString()
+                var endDateStr = item.endDate ? translateDate(item.endDate)
                 :getWord("no end date specified");
 
                 return <Paper key={randomString()} sx={timeEvent}>
                     <Paper sx={index % 2 === 0 ? floatLeft : floatRight}>
                         <Typography sx={dateText} variant="h6">
-                            {getWord("startDate")}:  {new  Date(item.startDate).toDateString()}
+                            {getWord("startDate")}:  {translateDate(item.startDate)}
                         </Typography>
                         <Box sx={{ marginTop: "12px" }}>
                             {item.description}

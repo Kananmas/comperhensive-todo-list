@@ -17,6 +17,22 @@ export function useDictionary(word) {
         },
         getLang() {
             return context.lang;
+        },
+        translateDate(date) {
+            var format = "en-GB"
+            const lang = context.lang;
+
+            if(lang == "fa") {
+                format = "fa-IR"
+            }
+            if(lang == "CN") {
+                format = "zh-cn"
+            }
+            if(date instanceof Date) {
+                return date.toLocaleDateString(format)
+            }
+
+            return new Date(date).toLocaleDateString(format)
         }
     }
 

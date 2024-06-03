@@ -21,6 +21,10 @@ const words = {
         timeline:"Time Line",
         calender:"Calender",
         showdetails:"Show Details",
+        username:"User Name",
+        email:"Email",
+        password:"Password",
+        name:"Name",
         "no end date specified": "NO END DATE SPECIFIED"
     }
     ,
@@ -49,7 +53,11 @@ const words = {
         id:"شناسه",
         delete:"حذف",
         showdetails:"نامیش جزییات",
-        "no end date specified": "تاریخی مشحض نشده"
+        username:"نام کاربری",
+        email:"ایمیل",
+        password:"کلمه عبور",
+        name:"نام",
+        "no end date specified": "تاریخی مشخص نشده"
     },
     ch: {
         steptitle: "阶段标题",
@@ -76,6 +84,10 @@ const words = {
         id: "标识符",
         delete: "删除",
         showdetails: "显示详细信息",
+        username:"用户名",
+        email:"电子邮件",
+        password:"密码",
+        name:"姓名",
         "no end date specified": "未指定结束日期",
       }
 }

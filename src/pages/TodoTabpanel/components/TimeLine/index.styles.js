@@ -7,7 +7,8 @@ export const styles = {
     display: "flex",
     flexDirection: "column",
     justifyContent: "space-between",
-    alignItems: "center"
+    alignItems: "center",
+    marginTop:"15px"
 };
 export const timeEvent = {
     backgroundColor: "white",

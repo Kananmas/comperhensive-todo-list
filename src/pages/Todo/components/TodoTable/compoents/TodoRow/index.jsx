@@ -21,7 +21,7 @@ import { removeKeysFromEntires } from "../../../../../../utils/remove-keys-from-
 export const TodoRow = ({ todo, index }) => {
     const dispatch =  useDispatch()
     const nav = useNavigate();
-    const {getWord} = useDictionary();
+    const {getWord , translateDate} = useDictionary();
 
     const handleClickDelete = async () => {
        try {
@@ -49,7 +49,7 @@ export const TodoRow = ({ todo, index }) => {
             value = value.toDateString()
         }
         if(key.toLowerCase().endsWith("date") 
-        && typeof value === "string") value = new Date(value).toDateString()
+        && typeof value === "string") value = translateDate(value)
 
         return [key, value];
     });
