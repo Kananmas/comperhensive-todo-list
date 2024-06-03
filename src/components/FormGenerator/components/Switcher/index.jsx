@@ -1,3 +1,4 @@
+import { DateInput } from "./components/DateInput";
 import {Input} from "./components/Input"
 import { Radio } from "./components/Radio";
 import { Select } from "./components/Select";
@@ -9,6 +10,8 @@ export function Switcher(field) {
             return <Select {...field} />
         case "radio":
             return <Radio {...field} />
+        case "date":
+            return <DateInput {...field} />
         default : 
             return <Input {...field}/>
     }

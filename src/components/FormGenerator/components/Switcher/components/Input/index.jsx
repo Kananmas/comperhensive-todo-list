@@ -7,8 +7,6 @@ export function Input({ title, type, defaultValue, onChange, name }) {
     const selectListId = randomString();
     
     const {getWord} = useDictionary();
-
-
     return <Box sx={{ padding: "14px" }}>
         <InputLabel id={labelId}>{getWord(title) ?? getWord(name)  ?? title}</InputLabel>
         <MUIInput name={name}
