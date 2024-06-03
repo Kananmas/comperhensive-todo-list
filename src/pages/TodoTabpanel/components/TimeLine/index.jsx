@@ -22,6 +22,9 @@ export function StepsTimeline() {
     return <div style={lineStyles}>
         {
             steps.map((item, index) => {
+                var endDateStr = item.endDate ? new  Date(item.endDate).toDateString()
+                :"no end date specified".toUpperCase();
+
                 return <Paper key={randomString()} sx={timeEvent}>
                     <Paper sx={index % 2 === 0 ? floatLeft : floatRight}>
                         <Typography sx={dateText} variant="h6">
@@ -31,10 +34,9 @@ export function StepsTimeline() {
                             {item.description}
                         </Box>
                         <Typography sx={{ ...dateText, marginTop: "12px" }} variant="h6">
-                            End: {new  Date(item.endDate).toDateString()}
+                            End: {endDateStr}
                         </Typography>
                     </Paper>
-
                 </Paper>
             })
         }

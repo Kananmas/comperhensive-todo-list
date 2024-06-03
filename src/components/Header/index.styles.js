@@ -1,5 +1,3 @@
-import zIndex from "@mui/material/styles/zIndex"
-
 export const headerStyles = {
     width: "100%",
     marginBottom: "24px",
