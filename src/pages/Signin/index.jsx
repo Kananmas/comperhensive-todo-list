@@ -1,13 +1,13 @@
-import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { FormGenerator } from "../../components/FormGenerator";
 import { UserServices } from "../../services/user.service";
 import { authForm } from "../../utils/auth-form.utils";
-import { setAuthStateAction } from "../../store/auth/auth.actions";
+import { checkForJwt } from "../../utils/check-for-jwt.utils";
 
 export function SignIn() {
     const form = authForm("signin");
-    const dispatch = useDispatch();
     const userService = new UserServices();
+    const nav = useNavigate();
 
     const handleSubmit = async (data) => {
         try {
@@ -15,18 +15,8 @@ export function SignIn() {
                 data.password,
                 data.email);
             localStorage.setItem("access-token", result.userToken);
-            const payload = {
-                token: result.userToken,
-                authorized: true,
-                tokenKeys: {
-                    userId: result.Id,
-                    userName: result.userName,
-                    tokenExpiration: new Date(),
-                    tokenCreation: new Date(),
-                }
-            }
-
-            dispatch(setAuthStateAction(payload));
+            checkForJwt();
+            nav("/")
         }
         catch (e) {
             console.log(e)
