@@ -22,7 +22,7 @@ export function SignUp() {
     }
 
 
-    return <div style={{ textAlign: "center" }}>
-        <FormGenerator fields={form} sx={{ textAlign: "start" }} onSubmit={handleSubmit} />
+    return <div style={{ textAlign: "center", width: "50%", margin: "12px auto" }}>
+        <FormGenerator fields={form}  onSubmit={handleSubmit} />
     </div>
 }
