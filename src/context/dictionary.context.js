@@ -71,7 +71,7 @@ const words = {
         timeline: "时间线",
         calender: "工作日历",
         actions: "操作",
-        isdone: "完成了嗎？", // Changed isdone to IsDone for proper capitalization
+        isdone: "完成了嗎？", 
         text: "标题",
         id: "标识符",
         delete: "删除",

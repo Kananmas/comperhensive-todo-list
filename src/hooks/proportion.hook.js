@@ -7,12 +7,12 @@ export function useProportion(customSize=0) {
 
     const proportions = useMemo(() => {
         return {
-            pWidth:(customSize/1920)*width + "px",
-            pHeight:(customSize/1080)*height + "px",
+            pWidth:(customSize/2048)*width ,
+            pHeight:(customSize/1080)*height ,
             custom:(size=0) =>  {
                 return {
-                    width:(size/1920)*width + "px",
-                    height:(size/1080)*height + "px",
+                    width:(size/2048)*width ,
+                    height:(size/1080)*height ,
                 }
             }
         }
