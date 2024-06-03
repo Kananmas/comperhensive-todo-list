@@ -9,6 +9,7 @@ import { SignUp } from './pages/Singup';
 import { TodoTabpanel } from './pages/TodoTabpanel';
 import { Header } from './components/Header';
 import { UserPanel } from './pages/UserPanel';
+import { NotFound } from './pages/NotFound';
 
 function App() {
   return (
@@ -17,10 +18,11 @@ function App() {
         <Routes>
           <Route path='/' Component={Header}>
             <Route index Component={Todo} />
-            <Route path='signin' Component={SignIn} />
+            <Route path='signin' Component={SignIn} />  
             <Route path='signup' Component={SignUp} />
             <Route path='todoinfo/:id' Component={TodoTabpanel} />
             <Route path='user' Component={UserPanel} />
+            <Route path="*" Component={NotFound} />
           </Route>
         </Routes>
       </BrowserRouter>
