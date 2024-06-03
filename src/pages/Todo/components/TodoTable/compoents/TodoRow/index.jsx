@@ -1,6 +1,5 @@
 // components
 import { Button, Input, TableCell, TableRow, Typography } from "@mui/material"
-import { CheckBox } from "@mui/icons-material"
 
 // utils
 import { randomString } from "../../../../../../utils/random-string.utils"
@@ -8,6 +7,8 @@ import { randomString } from "../../../../../../utils/random-string.utils"
 // hooks
 import { useDispatch } from "react-redux"
 import { useNavigate } from "react-router-dom"
+import { useDictionary } from "../../../../../../hooks/dictionary.hook"
+
 
 // actions
 import { removeTodoAction, setSelectedTodo } from "../../../../../../store/todo/todo.actions"
@@ -20,6 +21,8 @@ import { removeKeysFromEntires } from "../../../../../../utils/remove-keys-from-
 export const TodoRow = ({ todo, index }) => {
     const dispatch =  useDispatch()
     const nav = useNavigate();
+    const {getWord} = useDictionary();
+
     const handleClickDelete = async () => {
        try {
         const todoService = new TodoService();
@@ -75,10 +78,10 @@ export const TodoRow = ({ todo, index }) => {
         </TableCell>
         <TableCell>
             <Button onClick={handleClickDelete} sx={rowButtonStyles}>
-                <Typography variant="button">DELETE</Typography>
+                <Typography variant="button">{getWord("delete")??"delete"}</Typography>
             </Button>
             <Button onClick={handleClickDetails} sx={{...rowButtonStyles , bgcolor:"orange"}}>
-                <Typography variant="button">SHOW DETAILS</Typography>
+                <Typography variant="button">{getWord("showdetails")}</Typography>
             </Button>
         </TableCell>
     </TableRow>

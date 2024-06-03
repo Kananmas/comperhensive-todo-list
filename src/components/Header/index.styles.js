@@ -1,3 +1,4 @@
+
 export const headerStyles = {
     width: "100%",
     marginBottom: "24px",
@@ -15,8 +16,9 @@ export const userBoxStyles = {
 }
 
 export const userSelectBox = {
+    color:"white",
     '.MuiOutlinedInput-notchedOutline': {
         zIndex: 0,
-        borderStyle: 'none'
+        borderStyle: 'none',
     }
 }

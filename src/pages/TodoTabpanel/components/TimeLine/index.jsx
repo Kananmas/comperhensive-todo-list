@@ -9,9 +9,11 @@ import { randomString } from "../../../../utils/random-string.utils";
 
 // styles
 import { dateText, floatLeft, floatRight, styles, timeEvent } from "./index.styles";
+import { useDictionary } from "../../../../hooks/dictionary.hook";
 
 export function StepsTimeline() {
     const steps = useSelector((store) => store.todo.selectedTodo.todoSteps);
+    const {getWord} = useDictionary();
 
     if (!steps.length) return <div style={{ textAlign: "center"}}><Typography variant="button">
         there are not steps defined for this item
@@ -23,18 +25,18 @@ export function StepsTimeline() {
         {
             steps.map((item, index) => {
                 var endDateStr = item.endDate ? new  Date(item.endDate).toDateString()
-                :"no end date specified".toUpperCase();
+                :getWord("no end date specified");
 
                 return <Paper key={randomString()} sx={timeEvent}>
                     <Paper sx={index % 2 === 0 ? floatLeft : floatRight}>
                         <Typography sx={dateText} variant="h6">
-                            Start:  {new  Date(item.startDate).toDateString()}
+                            {getWord("startDate")}:  {new  Date(item.startDate).toDateString()}
                         </Typography>
                         <Box sx={{ marginTop: "12px" }}>
                             {item.description}
                         </Box>
                         <Typography sx={{ ...dateText, marginTop: "12px" }} variant="h6">
-                            End: {endDateStr}
+                            {getWord("endDate")}: {endDateStr}
                         </Typography>
                     </Paper>
                 </Paper>
