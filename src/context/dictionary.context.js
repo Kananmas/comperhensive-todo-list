@@ -25,13 +25,14 @@ const words = {
         email:"Email",
         password:"Password",
         name:"Name",
+        description:"Description",
         "no end date specified": "NO END DATE SPECIFIED"
     }
     ,
     fa: {
         steptitle: "عنوان مرحله",
         title: "عنوان",
-        priority: "الویت",
+        priority: "اولویت",
         startdate: "روز شروع",
         enddate: "روز پایان",
         plannedenddate: "مهلت انجام تا",
@@ -57,6 +58,8 @@ const words = {
         email:"ایمیل",
         password:"کلمه عبور",
         name:"نام",
+        description:"توضیحات",
+        stepindex:"اولویت مرحله",
         "no end date specified": "تاریخی مشخص نشده"
     },
     ch: {
@@ -88,6 +91,8 @@ const words = {
         email:"电子邮件",
         password:"密码",
         name:"姓名",
+        description:"描述",
+        stepindex:"步骤优先级",
         "no end date specified": "未指定结束日期",
       }
 }

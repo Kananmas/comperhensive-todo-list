@@ -11,5 +11,7 @@ export function StepsForm ({data , handleClose}) {
         handleClose();
     }
 
-    return <FormGenerator fields={stepForm(data)} onSubmit={handleSumbit} />
+    return <FormGenerator sx={{width:"400px" , textAlign:"center"}} 
+    fields={stepForm(data)} 
+    onSubmit={handleSumbit} />
 }
