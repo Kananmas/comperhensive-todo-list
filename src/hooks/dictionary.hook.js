@@ -1,5 +1,5 @@
 import { useContext, useEffect } from "react";
-import { dictionaryContext } from "../context/dictionary.context";
+import { dictionaryContext } from "../context/dictionary/dictionary.context";
 
 export function useDictionary(word) {
     const [context, setContext = () => { }] = useContext(dictionaryContext);

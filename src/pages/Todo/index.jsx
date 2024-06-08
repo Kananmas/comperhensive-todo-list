@@ -10,11 +10,13 @@ import { Add } from "@mui/icons-material";
 import { TodoService } from "../../services/todo.service";
 //cations
 import { setTodosAction } from "../../store/todo/todo.actions";
+import { useError } from "../../hooks/error.hook";
 
 export const Todo = () => {
     const todos = useSelector((store) => store.todo.todos);
     const isAuthorized = useSelector((store => store.auth.authorized));
     const dispatch = useDispatch();
+    const {setValue} = useError();
     const [open, setOpen] = useState(false)
 
     const handleClickAdd = () => setOpen(true)
@@ -24,7 +26,7 @@ export const Todo = () => {
             const todoService = new TodoService();
             todoService.getByTodosByUserId().then((data) => {
                 dispatch(setTodosAction(data))
-            }).catch(e => console.log(e))
+            }).catch(e => setValue(e))
         }
     }, [isAuthorized])
 

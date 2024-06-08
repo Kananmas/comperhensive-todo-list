@@ -7,17 +7,20 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { TodoStepService } from "../../../../services/todo-step.service";
 import { setSelectedTodo } from "../../../../store/todo/todo.actions";
+import { useError } from "../../../../hooks/error.hook";
 
 export function StepsTable() {
     const [open , setOpen] = useState(false);
     const selectedTodo = useSelector((store) => store.todo.selectedTodo.todo)
     const dispatch = useDispatch();
+    const {setValue} = useError();
 
     const handleClickAdd = () => {
         setOpen(true);
     }
     
     const fetchLatestSteps = async () => {
+       try {
         const todoStepsService = new TodoStepService();
         const steps =  await todoStepsService.getStepByTodoid(selectedTodo.id);
 
@@ -25,6 +28,9 @@ export function StepsTable() {
             todo:selectedTodo, 
             todoSteps:steps,
         }))
+       } catch(e) {
+         setValue(e)
+       }
     }
 
     const handleClose = () => {

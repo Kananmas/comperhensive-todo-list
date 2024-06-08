@@ -3,11 +3,13 @@ import { FormGenerator } from "../../components/FormGenerator";
 import { UserServices } from "../../services/user.service";
 import { authForm } from "../../utils/auth-form.utils";
 import { checkForJwt } from "../../utils/check-for-jwt.utils";
+import { useError } from "../../hooks/error.hook";
 
 export function SignIn() {
     const form = authForm("signin");
     const userService = new UserServices();
     const nav = useNavigate();
+    const {setValue} = useError();
 
     const handleSubmit = async (data) => {
         try {
@@ -19,7 +21,7 @@ export function SignIn() {
             nav("/")
         }
         catch (e) {
-            console.log(e)
+            setValue(e)
         }
     }
 
