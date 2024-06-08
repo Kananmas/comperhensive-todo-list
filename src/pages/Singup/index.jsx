@@ -1,9 +1,16 @@
-import { FormGenerator } from "../../components/FormGenerator";
+// hooks
+import { useNavigate } from "react-router-dom";
 import { useError } from "../../hooks/error.hook";
+
+// services
 import { UserServices } from "../../services/user.service";
+
+// components
+import { FormGenerator } from "../../components/FormGenerator";
+
+// utiils
 import { authForm } from "../../utils/auth-form.utils";
 import { checkForJwt } from "../../utils/check-for-jwt.utils";
-import { useNavigate } from "react-router-dom";
 
 export function SignUp() {
     const form = authForm("signup");

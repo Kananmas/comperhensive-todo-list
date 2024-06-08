@@ -1,13 +1,20 @@
+// components
 import { Box, Button, Dialog, DialogContent, Paper, Table, TableContainer } from "@mui/material";
 import { StepsTableHead } from "./components/StepsTableHead";
 import { StepsTableBody } from "./components/StepsTableBody";
 import { Add } from "@mui/icons-material";
 import { StepsForm } from "./components/StepsForm";
+
+// hooks
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { TodoStepService } from "../../../../services/todo-step.service";
-import { setSelectedTodo } from "../../../../store/todo/todo.actions";
 import { useError } from "../../../../hooks/error.hook";
+
+// services
+import { TodoStepService } from "../../../../services/todo-step.service";
+
+// actions
+import { setSelectedTodo } from "../../../../store/todo/todo.actions";
 
 export function StepsTable() {
     const [open , setOpen] = useState(false);

@@ -1,5 +1,8 @@
+// hooks
 import { useMemo, useState } from "react";
+// context
 import { errorContext } from "./error.context";
+// components
 import { Box, IconButton, Typography } from "@mui/material";
 import { CloseRounded } from "@mui/icons-material";
 

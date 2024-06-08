@@ -1,4 +1,7 @@
+// hook
 import { useState } from "react"
+
+// context
 import { dictionaryContext as DictionaryContext, context} from "./dictionary.context"
 
 export function DictionaryProvider({children}) {

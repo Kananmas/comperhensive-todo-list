@@ -1,9 +1,16 @@
+// hooks
 import { useNavigate } from "react-router-dom";
-import { FormGenerator } from "../../components/FormGenerator";
+import { useError } from "../../hooks/error.hook";
+
+// services
 import { UserServices } from "../../services/user.service";
+
+// components
+import { FormGenerator } from "../../components/FormGenerator";
+
+// utiils
 import { authForm } from "../../utils/auth-form.utils";
 import { checkForJwt } from "../../utils/check-for-jwt.utils";
-import { useError } from "../../hooks/error.hook";
 
 export function SignIn() {
     const form = authForm("signin");
