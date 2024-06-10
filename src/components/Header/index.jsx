@@ -1,6 +1,10 @@
 // components
 import { Box } from "@mui/material";
 import { Outlet } from "react-router-dom";
+import { MobileHeader } from "./component/MobileSidebar";
+import { DekstopHeader } from "./component/DekstopHeader";
+import { HeaderLink } from "./component/HeaderLink";
+
 
 // hooks
 import { useCheckAuth } from "../../hooks/check-auth.hook";
@@ -14,9 +18,6 @@ import { randomString } from "../../utils/random-string.utils";
 
 // styles
 import { headerStyles, userBoxStyles, userSelectBox } from "./index.styles";
-import { MobileHeader } from "./component/MobileSidebar";
-import { DekstopHeader } from "./component/DekstopHeader";
-import { HeaderLink } from "./component/HeaderLink";
 
 export function Header() {
   useCheckAuth();
@@ -40,21 +41,24 @@ export function Header() {
   return <Box width="100vw">
     <Box sx={headerStyles}>
       {
-        (width >= 538) ?  links.map((item) => <HeaderLink
+        (width >= 538) ? links.map((item) => <HeaderLink
           key={randomString()}
           {...item}
           sx={{ ...item.sx, fontSize: item?.sx?.fontSize + "px" ?? stdFontSize + "px" }}
-        />):null
+        />) : null
       }
 
-      {(width >= 538) ? <DekstopHeader 
-      links={links}
-      handleChangeLang={handleChangeLang}
-      handleClickAccount={handleClickAccount}
-      stdFontSize={stdFontSize}
-      userBoxStyles={userBoxStyles}
-      userSelectBox={userSelectBox}
-      /> : <MobileHeader links={links} handleClickAccount={handleClickAccount} />}
+      {(width >= 538) ? <DekstopHeader
+        links={links}
+        handleChangeLang={handleChangeLang}
+        handleClickAccount={handleClickAccount}
+        stdFontSize={stdFontSize}
+        userBoxStyles={userBoxStyles}
+        userSelectBox={userSelectBox}
+      /> : <MobileHeader
+        links={links}
+        handleClickAccount={handleClickAccount}
+      />}
     </Box>
     <Outlet />
   </Box>
