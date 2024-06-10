@@ -10,7 +10,7 @@ export function useWindow() {
     useEffect(() => {
         const watchWindow = () => {
             setDimentions(() => ({
-                width:window.innerHeight,
+                width:window.innerWidth,
                 height:window.innerHeight
             }))
         }

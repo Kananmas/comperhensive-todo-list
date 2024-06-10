@@ -1,18 +1,33 @@
-import { Box, IconButton, MenuItem, Select, Typography } from "@mui/material";
+// components
+import { Box } from "@mui/material";
+import { Outlet } from "react-router-dom";
+
+// hooks
 import { useCheckAuth } from "../../hooks/check-auth.hook";
-import { Outlet, useNavigate } from "react-router-dom";
-import { randomString } from "../../utils/random-string.utils";
-import { links } from "./utils/links.utils";
-import { headerStyles, userBoxStyles, userSelectBox } from "./index.styles";
-import { HeaderLink } from "./component/HeaderLink";
-import { AccountCircle, Language, Logout } from "@mui/icons-material";
 import { useDictionary } from "../../hooks/dictionary.hook";
+import { useNavigate } from "react-router-dom";
+import { useWindow } from "../../hooks/window.hook";
+
+// utils
+import { links } from "./utils/links.utils";
+import { randomString } from "../../utils/random-string.utils";
+
+// styles
+import { headerStyles, userBoxStyles, userSelectBox } from "./index.styles";
+import { MobileHeader } from "./component/MobileSidebar";
+import { DekstopHeader } from "./component/DekstopHeader";
+import { HeaderLink } from "./component/HeaderLink";
 
 export function Header() {
   useCheckAuth();
   const nav = useNavigate();
-  const { changeLang, getLang, getWord } = useDictionary();
-  const stdFontSize = 16;
+  const { changeLang } = useDictionary();
+  let stdFontSize = 16;
+  const { width } = useWindow();
+
+  if (width < 400) {
+    stdFontSize = 12
+  }
 
   const handleClickAccount = () => {
     nav("/user")
@@ -22,48 +37,24 @@ export function Header() {
     changeLang(e.target.value)
   }
 
-  return <Box>
+  return <Box width="100vw">
     <Box sx={headerStyles}>
-      {links.map((item) => <HeaderLink
-        key={randomString()}
-        {...item}
-        sx={{ ...item.sx, fontSize: item?.sx?.fontSize + "px" ?? stdFontSize + "px" }}
-      />)}
+      {
+        (width >= 538) ?  links.map((item) => <HeaderLink
+          key={randomString()}
+          {...item}
+          sx={{ ...item.sx, fontSize: item?.sx?.fontSize + "px" ?? stdFontSize + "px" }}
+        />):null
+      }
 
-      <Box
-        sx={userBoxStyles}
-      >
-        <Language />
-        <Select
-          onChange={handleChangeLang}
-          value={getLang()}
-          sx={{ ...userSelectBox }}>
-          <MenuItem value="en">
-           🇬🇧󠁧󠁢 {getWord("english")}
-          </MenuItem>
-          <MenuItem value="fa">
-            🇮🇷 {getWord("Persian")}
-          </MenuItem>
-          <MenuItem value="ch">
-            🇨🇳 {getWord("chinese")}
-          </MenuItem>
-        </Select>
-        <IconButton onClick={handleClickAccount}>
-          <AccountCircle color="primary" style={{
-            width: "37px",
-            height: "37px"
-          }} />
-        </IconButton>
-        <Select
-          sx={userSelectBox}>
-          <MenuItem>
-            <Logout />
-            <Typography fontSize={stdFontSize+"px"} variant="button" padding={"0px  12px"}>
-              {getWord("Logout")}
-            </Typography>
-          </MenuItem>
-        </Select>
-      </Box>
+      {(width >= 538) ? <DekstopHeader 
+      links={links}
+      handleChangeLang={handleChangeLang}
+      handleClickAccount={handleClickAccount}
+      stdFontSize={stdFontSize}
+      userBoxStyles={userBoxStyles}
+      userSelectBox={userSelectBox}
+      /> : <MobileHeader links={links} handleClickAccount={handleClickAccount} />}
     </Box>
     <Outlet />
   </Box>
