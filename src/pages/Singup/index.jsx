@@ -8,9 +8,8 @@ import { UserServices } from "../../services/user.service";
 // components
 import { FormGenerator } from "../../components/FormGenerator";
 
-// utiils
+// utils
 import { authForm } from "../../utils/auth-form.utils";
-import { checkForJwt } from "../../utils/check-for-jwt.utils";
 
 export function SignUp() {
     const form = authForm("signup");
@@ -22,7 +21,6 @@ export function SignUp() {
         try {
             const result = await userService.signUp(data);
             localStorage.setItem("access-token", result.userToken);
-            checkForJwt();
             nav("/")
         }
         catch (e) {
