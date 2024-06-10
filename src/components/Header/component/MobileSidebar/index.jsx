@@ -87,15 +87,15 @@ export function MobileHeader({ links, handleClickAccount, handleClickLogout, cha
             </IconButton>
         </Box>
 
-        <Box sx={boxStyles}>
-            <IconButton onClick={handleClickClose}>
-                <Close />
+        <Box sx={{boxStyles}}>
+            <IconButton sx={{color:"white" , fontSize:"16px"}} onClick={handleClickLogout}>
+               <Logout sx={{color:"white"}} /> {getWord("logout")}
             </IconButton>
         </Box>
 
         <Box sx={boxStyles}>
-            <IconButton onClick={handleClickLogout}>
-                <Logout />
+            <IconButton onClick={handleClickClose}>
+                <Close sx={{color:"white"}} />
             </IconButton>
         </Box>
     </Box>
