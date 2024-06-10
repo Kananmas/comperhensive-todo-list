@@ -22,14 +22,21 @@ import { headerStyles, userBoxStyles, userSelectBox } from "./index.styles";
 
 // actions
 import { clearAuthStateAction } from "../../store/auth/auth.actions";
+import { useState } from "react";
 
 export function Header() {
   useCheckAuth();
   const nav = useNavigate();
+  const [mobileBarOpen, setMobileBarOpen] = useState(false)
   const { changeLang } = useDictionary();
-  let stdFontSize = 16;
   const { width } = useWindow();
   const dispatch = useDispatch();
+  let stdFontSize = 16;
+
+
+  const changeMobileBarState = () => {
+    setMobileBarOpen(!mobileBarOpen)
+  }
 
   if (width < 400) {
     stdFontSize = 12
@@ -71,8 +78,9 @@ export function Header() {
         links={links}
         handleClickLogout={handleClickLogout}
         handleClickAccount={handleClickAccount}
+        changeMobileBarState={changeMobileBarState}
       />}
     </Box>
-    <Outlet />
+    {!mobileBarOpen && <Outlet />}
   </Box>
 }
