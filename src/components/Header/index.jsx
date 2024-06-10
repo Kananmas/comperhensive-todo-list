@@ -11,6 +11,7 @@ import { useCheckAuth } from "../../hooks/check-auth.hook";
 import { useDictionary } from "../../hooks/dictionary.hook";
 import { useNavigate } from "react-router-dom";
 import { useWindow } from "../../hooks/window.hook";
+import { useDispatch } from "react-redux";
 
 // utils
 import { links } from "./utils/links.utils";
@@ -19,12 +20,16 @@ import { randomString } from "../../utils/random-string.utils";
 // styles
 import { headerStyles, userBoxStyles, userSelectBox } from "./index.styles";
 
+// actions
+import { clearAuthStateAction } from "../../store/auth/auth.actions";
+
 export function Header() {
   useCheckAuth();
   const nav = useNavigate();
   const { changeLang } = useDictionary();
   let stdFontSize = 16;
   const { width } = useWindow();
+  const dispatch = useDispatch();
 
   if (width < 400) {
     stdFontSize = 12
@@ -36,6 +41,12 @@ export function Header() {
 
   const handleChangeLang = (e) => {
     changeLang(e.target.value)
+  }
+
+  const handleClickLogout = () => {
+    localStorage.removeItem("access-token");
+    dispatch(clearAuthStateAction());
+    nav("/signin")
   }
 
   return <Box width="100vw">
@@ -55,8 +66,10 @@ export function Header() {
         stdFontSize={stdFontSize}
         userBoxStyles={userBoxStyles}
         userSelectBox={userSelectBox}
+        handleClickLogout={handleClickLogout}
       /> : <MobileHeader
         links={links}
+        handleClickLogout={handleClickLogout}
         handleClickAccount={handleClickAccount}
       />}
     </Box>

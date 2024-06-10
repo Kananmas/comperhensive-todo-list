@@ -6,6 +6,7 @@ export function DekstopHeader({
     userBoxStyles , 
     handleChangeLang ,
     handleClickAccount, 
+    handleClickLogout,
     stdFontSize, 
     userSelectBox,
 }) {
@@ -37,7 +38,7 @@ export function DekstopHeader({
     </IconButton>
     <Select
       sx={userSelectBox}>
-      <MenuItem>
+      <MenuItem onClick={handleClickLogout}>
         <Logout />
         <Typography
           fontSize={stdFontSize + "px"}

@@ -1,11 +1,11 @@
-import { AccountCircle, Close, Language, Menu } from "@mui/icons-material";
+import { AccountCircle, Close, Language, Logout, Menu } from "@mui/icons-material";
 import { Box, IconButton, MenuItem, Select } from "@mui/material";
 import { useState } from "react";
 import { HeaderLink } from "../HeaderLink";
 import { randomString } from "../../../../utils/random-string.utils";
 import { useDictionary } from "../../../../hooks/dictionary.hook";
 
-export function MobileHeader({ links  , handleClickAccount}) {
+export function MobileHeader({ links  , handleClickAccount , handleClickLogout}) {
     const [open, setOpen] = useState(false);
     const handleClickOpen = () => setOpen(true);
     const handleClickClose = () => setOpen(false);
@@ -59,6 +59,12 @@ export function MobileHeader({ links  , handleClickAccount}) {
         <Box>
             <IconButton onClick={handleClickClose}>
                 <Close />
+            </IconButton>
+        </Box>
+
+        <Box>
+            <IconButton onClick={handleClickLogout}>
+                <Logout />
             </IconButton>
         </Box>
     </Box>

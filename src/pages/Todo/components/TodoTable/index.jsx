@@ -1,9 +1,16 @@
+// components
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from "@mui/material";
+import { TodoRow } from "./components/TodoRow";
+
+// classes
 import { TodoItem } from "../../../../classes/todo-item.class";
+
+// hooks
 import { useSelector } from "react-redux";
-import { randomString } from "../../../../utils/random-string.utils";
-import { TodoRow } from "./compoents/TodoRow";
 import { useDictionary } from "../../../../hooks/dictionary.hook";
+
+// utils
+import { randomString } from "../../../../utils/random-string.utils";
 
 export function TodoTable() {
     const tableColumns = Object.keys(new TodoItem()).filter(item => item !== "userId");
