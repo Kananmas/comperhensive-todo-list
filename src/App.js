@@ -5,7 +5,7 @@ import { store } from './store';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { Todo } from './pages/Todo';
 import { SignIn } from './pages/Signin';
-import { SignUp } from './pages/Singup';
+import { SignUp } from './pages/Signup';
 import { TodoTabpanel } from './pages/TodoTabpanel';
 import { Header } from './components/Header';
 import { UserPanel } from './pages/UserPanel';

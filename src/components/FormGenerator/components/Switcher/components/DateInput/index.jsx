@@ -1,7 +1,6 @@
 import { Box, InputLabel, Input } from "@mui/material";
 import { randomString } from "../../../../../../utils/random-string.utils";
 import { useDictionary } from "../../../../../../hooks/dictionary.hook";
-import { DatePicker } from "antd";
 import dayjs from "dayjs";
 import customParseFormat from "dayjs/plugin/customParseFormat"
 
@@ -14,6 +13,7 @@ export function DateInput({ title, defaultValue, onChange, name }) {
     return <Box sx={{ padding: "14px" }}>
         <InputLabel id={labelId}>{getWord(title) ?? getWord(name) ?? title}</InputLabel>
         <Input
+            name={name}
             type="date"
             onChange={onChange}
             value={makeDateStandard(defaultValue , getDateFormat)}
