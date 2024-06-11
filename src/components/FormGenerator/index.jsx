@@ -6,7 +6,7 @@ import { Upload } from "@mui/icons-material";
 
 
 
-export function FormGenerator({ fields = [], onSubmit  , sx}) {
+export function FormGenerator({ fields = [], onSubmit  , sx , loading}) {
     let formData = {};
 
 
@@ -41,7 +41,7 @@ export function FormGenerator({ fields = [], onSubmit  , sx}) {
             }
         </Box>
         <Box sx={{marginTop:"12px" , textAlign:"center"}}>
-            <Button type="submit" onClick={handleOnSubmit}>
+            <Button type="submit" onClick={handleOnSubmit} disable={loading}>
                 <Upload />
             </Button>
         </Box>
