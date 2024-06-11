@@ -41,7 +41,7 @@ export function FormGenerator({ fields = [], onSubmit  , sx , loading}) {
             }
         </Box>
         <Box sx={{marginTop:"12px" , textAlign:"center"}}>
-            <Button type="submit" onClick={handleOnSubmit} disable={loading}>
+            <Button type="submit" onClick={handleOnSubmit} disabled={loading}>
                 <Upload />
             </Button>
         </Box>
