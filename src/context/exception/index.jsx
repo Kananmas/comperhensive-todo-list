@@ -14,7 +14,8 @@ const errorBoxStyles = {
     left: "14px",
     top: "14px",
     borderRadius: "12px",
-    padding: "12px"
+    padding: "12px",
+    zIndex:"99"
 }
 
 const containerStyles = {
