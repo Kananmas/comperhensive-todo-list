@@ -29,7 +29,7 @@ export function FormDialog({ open, onClose }) {
     } catch (error) {
       setValue(error)
     } finally {
-      loading(false)
+      setLoading(false)
       onClose();
     }
   }

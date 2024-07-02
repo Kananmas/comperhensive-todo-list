@@ -81,6 +81,8 @@ export function Header() {
         changeMobileBarState={changeMobileBarState}
       />}
     </Box>
+    <Box sx={{padding:"12px"}}>
     {!mobileBarOpen && <Outlet />}
+    </Box>
   </Box>
 }
