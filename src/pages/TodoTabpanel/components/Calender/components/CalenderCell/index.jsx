@@ -1,20 +1,27 @@
+// hooks
 import { useSelector } from "react-redux";
+import { useWindow } from "../../../../../../hooks/window.hook";
+
+// utils
+import { findRelatedStep } from "../../utils/find-related-step.utils";
+import { randomColor } from "../../utils/random-color.utils";   
+
+// styles
 import styles from "./index.module.css"
 
-const colorRangePircker = () => Math.floor(Math.random()  * 255)
 
 export function CalenderCell(props) {
+    const {width} = useWindow();
     const steps = useSelector((store) => store.todo.selectedTodo.todoSteps);
-    const currentStep = steps.find((item) => {
-        const itemDate = new Date(item.startDate);
-        const targetDate = new Date(props['$d']);
-        return itemDate.toDateString() === targetDate.toDateString();
-    });
-    const bgColor = `rgb(${colorRangePircker()} ,
-     ${colorRangePircker()} , ${colorRangePircker()})`
+    const currentStep = findRelatedStep(steps , props['$d']);
+   
     if(!currentStep) return null
-    return <div className={styles["calender-item"]} style={{backgroundColor:bgColor}}>
-        <h6>{currentStep.title}</h6>
-        <p>{currentStep.stepDescription}</p>
+
+    if(width < 400) return <div
+     className={styles["calender-item"]} 
+     style={{backgroundColor:randomColor() , minWidth:"2px" , minHeight:"4px"}}></div>
+
+    return <div className={styles["calender-item"]} style={{backgroundColor:randomColor()}}>
+        <h4>{currentStep.stepTitle}</h4>
     </div>
 }
