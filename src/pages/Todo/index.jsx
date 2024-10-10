@@ -35,7 +35,7 @@ export const Todo = () => {
 
     return <>
         <Box sx={{ display: "flex", flexDirection: "row-reverse", padding: "12px" }}>
-            <Button onClick={handleClickAdd} sx={{ boxShadow: "1px 1px gainsboro" }}>
+            <Button onClick={handleClickAdd} sx={{ boxShadow: "1px 1px gainsboro"  , backgroundColor:"white"}}>
                 <Add />
             </Button>
         </Box>

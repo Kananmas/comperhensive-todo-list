@@ -60,6 +60,9 @@ const words = {
         name:"نام",
         description:"توضیحات",
         stepindex:"اولویت مرحله",
+        high:"بالا",
+        medium:"معمولی",
+        low:"پایین",
         "no end date specified": "تاریخی مشخص نشده"
     },
     ch: {
@@ -93,6 +96,9 @@ const words = {
         name:"姓名",
         description:"描述",
         stepindex:"步骤优先级",
+        high:"高的",
+        low:"低的",
+        medium:"中等的",
         "no end date specified": "未指定结束日期",
       }
 }

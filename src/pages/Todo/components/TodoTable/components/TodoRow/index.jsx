@@ -51,7 +51,7 @@ export const TodoRow = ({ todo, index }) => {
         if(key.toLowerCase().endsWith("date") 
         && typeof value === "string") value = translateDate(value)
 
-        return [key, value];
+        return value;
     });
     
     const rowButtonStyles ={
@@ -66,10 +66,10 @@ export const TodoRow = ({ todo, index }) => {
             {index + 1}
         </TableCell>
         {
-            cells.map(([key, value]) => {
+            cells.map((value) => {
             
                 return <TableCell key={randomString()}>
-                    {value}
+                    {value ? getWord(value)??value:value}
                 </TableCell>
             })
         }
