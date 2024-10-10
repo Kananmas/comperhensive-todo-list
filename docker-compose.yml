@@ -1,0 +1,10 @@
+services:
+ comperhensive-todo-list-react:
+   image: comperhensive-todo-list-react
+   container_name: comperhensive-todo-list-react
+   build: 
+    context: .
+    dockerfile: Dockerfile
+   ports:
+    - 5000:3000
+   command: serve -s build
