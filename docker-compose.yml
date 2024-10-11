@@ -8,3 +8,9 @@ services:
    ports:
     - 5000:3000
    command: serve -s build
+   networks:
+      - todonetwork
+networks:
+  todonetwork:
+    name: todo_app_network
+    external: true
